@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private ISelectable selectedObj;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (selectedObj != null)
+        {
+            selectedObj.OnDeselected();
+        }
+        selectedObj = null;
+
+        MakeRaycast();
+
+        if (selectedObj != null)
+        {
+            selectedObj.OnSelected();
+        }
+    }
+
+    public void MakeRaycast()
+    {
+        var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        if (Physics.Raycast(ray, out var hit))
+        {
+            if (hit.transform.CompareTag("Selectable"))
+            {
+                Debug.Log("!!!");
+                selectedObj = hit.transform.GetComponent<ISelectable>();
+            }
+        }
     }
 }
