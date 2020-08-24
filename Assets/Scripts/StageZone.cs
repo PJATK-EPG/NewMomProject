@@ -6,6 +6,7 @@ public class StageZone : MonoBehaviour, ISelectable
 {
     [SerializeField] private Material defaultMaterial;
     [SerializeField] private Material selectedMaterial;
+    [SerializeField] private Material redMaterial;
 
     private MeshRenderer renderer;
     private void Start()
@@ -15,6 +16,10 @@ public class StageZone : MonoBehaviour, ISelectable
     public void OnSelected()
     {
         renderer.material = selectedMaterial;
+        if (Input.GetKey(KeyCode.LeftAlt))
+        {
+            renderer.material = redMaterial;
+        }
     }
     public void OnDeselected()
     {
