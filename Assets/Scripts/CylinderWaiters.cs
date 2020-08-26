@@ -18,8 +18,6 @@ public class CylinderWaiters : WaiterDelegate, ISelectable
     }
     
     public override void OnActivated() => meshRenderer.material = activatedMaterial;
-    
-
     public override void OnFinished() => meshRenderer.material = finishedMaterial;
 
     public void OnSelected()

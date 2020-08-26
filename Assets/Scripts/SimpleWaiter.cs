@@ -25,8 +25,6 @@ public class SimpleWaiter : MonoBehaviour
     private void Update()
     {
         CheckInWaiters();
-
-        CheckChangingCondition();
     }
 
     private void CheckInWaiters()
@@ -43,11 +41,6 @@ public class SimpleWaiter : MonoBehaviour
                 Activate();
             }
         }
-    }
-    private void CheckChangingCondition()
-    {
-
-        
     }
     
     public  void Activate()
