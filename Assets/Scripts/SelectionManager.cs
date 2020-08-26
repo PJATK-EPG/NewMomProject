@@ -29,7 +29,6 @@ public class SelectionManager : MonoBehaviour
         {
             if (hit.transform.CompareTag("Selectable"))
             {
-                Debug.Log("!!!");
                 selectedObj = hit.transform.GetComponent<ISelectable>();
             }
         }
