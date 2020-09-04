@@ -12,7 +12,6 @@ public class StageZone : MonoBehaviour, ISelectable
     [SerializeField] private Material redMaterial;
 
     private MeshRenderer renderer;
-    private bool isActive;
     private void Start()
     {
         renderer = GetComponent<MeshRenderer>();
