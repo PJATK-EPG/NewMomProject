@@ -8,16 +8,17 @@ public class SZDelegate : WaiterDelegate, ISelectable
     [SerializeField] private Material selectedMaterial;
     [SerializeField] private Material redMaterial;
 
-    //[SerializeField] private StageZone parent;
-    //[SerializeField] private List<StageZone> children;
     private bool shouldRender;
-    [SerializeField] private MeshRenderer sphereMeshRenderer;
+    private MeshRenderer sphereMeshRenderer;
 
     private SimpleWaiter waiter;
 
     private void Start()
     {
+        Debug.Log("2");
         shouldRender = Options.Instance.shouldRenderStageZones;
+        sphereMeshRenderer = GetComponent<MeshRenderer>();
+        waiter = GetComponent<SimpleWaiter>();
         sphereMeshRenderer.enabled = false;
     }
     public override void OnActivated()
@@ -28,7 +29,7 @@ public class SZDelegate : WaiterDelegate, ISelectable
 
     public override void OnFinished()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public void OnSelected()

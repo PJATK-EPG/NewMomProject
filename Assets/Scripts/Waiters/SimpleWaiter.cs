@@ -17,9 +17,15 @@ public class SimpleWaiter : MonoBehaviour
 
     private void Start()
     {
-        state = inWaiters.Count == 0 ? WaitersState.activated : WaitersState.deactivated;
-        
         waiterDelegate = GetComponent<WaiterDelegate>();
+        if (inWaiters.Count == 0)
+        {
+            Activate();
+        }
+        else
+        {
+            state = WaitersState.deactivated;
+        }
     }
 
     private void Update()

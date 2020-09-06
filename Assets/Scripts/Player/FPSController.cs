@@ -4,8 +4,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class SC_FPSController : MonoBehaviour
+public class FPSController : MonoBehaviour
 {
+     
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
     public float jumpSpeed = 8.0f;
@@ -18,8 +19,6 @@ public class SC_FPSController : MonoBehaviour
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
-    [HideInInspector]
-    public bool canMove = true;
 
     void Start()
     {
@@ -46,8 +45,8 @@ public class SC_FPSController : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = isRunning ? runningSpeed : walkingSpeed * Input.GetAxis("Vertical");
+        float curSpeedY = isRunning ? runningSpeed : walkingSpeed * Input.GetAxis("Horizontal");
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
         return movementDirectionY;
@@ -55,7 +54,7 @@ public class SC_FPSController : MonoBehaviour
 
     private void CountGravity(float movementDirectionY)
     {
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (Input.GetButton("Jump") && characterController.isGrounded)
         {
             moveDirection.y = jumpSpeed;
         }

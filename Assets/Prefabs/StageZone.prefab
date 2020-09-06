@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 910004624919920397}
-  - component: {fileID: 5852617925492134435}
-  - component: {fileID: 5198892748923511505}
   m_Layer: 0
   m_Name: StageZone
   m_TagString: Untagged
@@ -33,33 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5852617925492134435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623758228399926564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1634c2babffdc469f17debebed52b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inWaiters: []
-  waiterDelegate: {fileID: 0}
-  state: 0
---- !u!114 &5198892748923511505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623758228399926564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d13712bd2dc4aa48ba61e4953aa8870, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2490642803987594142
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +43,8 @@ GameObject:
   - component: {fileID: 2490642803987594138}
   - component: {fileID: 2490642803987594139}
   - component: {fileID: 2490642803987594140}
-  - component: {fileID: 2490642803987594141}
+  - component: {fileID: 8189387285575386240}
+  - component: {fileID: 4331425495369167822}
   m_Layer: 0
   m_Name: SelectableArea
   m_TagString: Selectable
@@ -155,7 +127,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2490642803987594141
+--- !u!114 &8189387285575386240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,14 +136,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 2490642803987594142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dc262bea2059e247b2369af5736549f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b1634c2babffdc469f17debebed52b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  children: []
+  inWaiters: []
+  waiterDelegate: {fileID: 0}
+  state: 0
+--- !u!114 &4331425495369167822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2490642803987594142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d13712bd2dc4aa48ba61e4953aa8870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   defaultMaterial: {fileID: 2100000, guid: 9ddd58aa17d249f45adc927103555233, type: 2}
   selectedMaterial: {fileID: 2100000, guid: ed7796346e29ef7458defd4670ababb4, type: 2}
   redMaterial: {fileID: 2100000, guid: 9c3852024e1ab484ea695f6b4b064b2d, type: 2}
+  sphereMeshRenderer: {fileID: 2490642803987594139}
 --- !u!1 &3477672657948147634
 GameObject:
   m_ObjectHideFlags: 0
