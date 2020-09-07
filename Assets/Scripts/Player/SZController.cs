@@ -13,6 +13,8 @@ public class SZController : MonoBehaviour
         Instance = this;
     }
 
+
+    //добавить на лок/анлок появление мыши, появление гуи, реакцию стейдж зон
     public void Lock() => isActive = false;
     public void Unlock() => isActive = true;
 

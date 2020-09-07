@@ -1912,8 +1912,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd1e77eedf7e4242862a656741f6243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldRenderStageZones: 1
   isFP_isFirst: 1
+  shouldRenderStageZones: 1
+  shouldUseDefPoints: 1
 --- !u!4 &1867552675
 Transform:
   m_ObjectHideFlags: 0

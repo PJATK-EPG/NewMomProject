@@ -24,6 +24,8 @@ public class StateSwitcher : MonoBehaviour
     private float armRotateStep = 2f;
     private float cameraStep = 2f;
 
+    private float animationAccuracy = 0.125f;
+
     private void Awake()
     {
         Instance = this;
@@ -42,23 +44,23 @@ public class StateSwitcher : MonoBehaviour
         }
         else if (canAnimateToSZ)
         {
-           if ((Vector3.Distance(cameraArm.transform.position, armPosition) > 0.5f)
-           || (Quaternion.Angle(cameraArm.transform.rotation, armAngleRotation) > 0.5f)
-          // || (Quaternion.Angle(additionalCamera.transform.rotation, Quaternion.Euler(0,180,0)) > 0.5f)
-           || (Vector3.Distance(additionalCamera.transform.localPosition, cameraPosition) > 0.5f))
+           if ((Vector3.Distance(cameraArm.transform.position, armPosition) > animationAccuracy)
+           || (Vector3.Distance(additionalCamera.transform.localPosition, cameraPosition) > animationAccuracy))
             {
                 cameraArm.transform.position = Vector3.MoveTowards(cameraArm.transform.position, armPosition, armStep * Time.deltaTime);
-                cameraArm.transform.rotation = Quaternion.Lerp(cameraArm.transform.rotation, armAngleRotation, armRotateStep * Time.deltaTime);
-                //additionalCamera.transform.rotation = Quaternion.Lerp(additionalCamera.transform.rotation, Quaternion.Euler(0, 180, 0), armRotateStep * Time.deltaTime);
                 additionalCamera.transform.localPosition = Vector3.MoveTowards(additionalCamera.transform.localPosition, cameraPosition, cameraStep * Time.deltaTime);
+                if (Options.Instance.shouldUseDefPoints)
+                    cameraArm.transform.rotation = Quaternion.Lerp(cameraArm.transform.rotation, armAngleRotation, armRotateStep * Time.deltaTime);
             }
             else
             {
                 cameraArm.transform.position = armPosition;
-                cameraArm.transform.rotation = armAngleRotation;
                 additionalCamera.transform.localPosition = cameraPosition;
+                if (Options.Instance.shouldUseDefPoints)
+                    cameraArm.transform.rotation = armAngleRotation;
+
+                szState.Unlock();
                 canAnimateToSZ = false;
-                Debug.Log("Finished");
             }
         }
     }
