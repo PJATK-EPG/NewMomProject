@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract class PlayerState : MonoBehaviour
+public abstract class PlayerState : MonoBehaviour
 {
-    [SerializeField] private IStateInputHandler inputHandler;
-    private bool isActive;
+    [SerializeField]private StateInputHandler inputHandler;
+    protected bool isActive;
 
     private void Update()
     {
