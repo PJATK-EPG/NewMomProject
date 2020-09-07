@@ -15,7 +15,6 @@ public class SZDelegate : WaiterDelegate, ISelectable
 
     private void Start()
     {
-        Debug.Log("2");
         shouldRender = Options.Instance.shouldRenderStageZones;
         sphereMeshRenderer = GetComponent<MeshRenderer>();
         waiter = GetComponent<SimpleWaiter>();

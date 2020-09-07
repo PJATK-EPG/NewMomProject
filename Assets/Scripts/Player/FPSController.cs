@@ -6,19 +6,26 @@ using UnityEngine;
 
 public class FPSController : MonoBehaviour
 {
-     
-    public float walkingSpeed = 7.5f;
-    public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
-    public Camera playerCamera;
-    public float lookSpeed = 2.0f;
-    public float lookXLimit = 45.0f;
+    public static FPSController Instance { get; private set; }
 
-    CharacterController characterController;
-    Vector3 moveDirection = Vector3.zero;
-    float rotationX = 0;
+    private bool isActive;
 
+    [SerializeField] private float walkingSpeed = 7.5f;
+    [SerializeField] private float runningSpeed = 11.5f;
+    [SerializeField] private float jumpSpeed = 8.0f;
+    [SerializeField] private float gravity = 20.0f;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private float lookSpeed = 2.0f;
+    [SerializeField] private float lookXLimit = 45.0f;
+
+    private CharacterController characterController;
+    private Vector3 moveDirection = Vector3.zero;
+    private float rotationX = 0;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -30,13 +37,13 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
-        float movementDirectionY = CountMovement();
-
-        CountGravity(movementDirectionY);
-
-        characterController.Move(moveDirection * Time.deltaTime);
-
-        MakeRotation();
+        if (isActive)
+        {
+            float movementDirectionY = CountMovement();
+            CountGravity(movementDirectionY);
+            characterController.Move(moveDirection * Time.deltaTime);
+            MakeRotation();
+        }
     }
 
     private float CountMovement()
@@ -75,4 +82,7 @@ public class FPSController : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
     }
+
+    public void Lock() => isActive = false;
+    public void Unlock() => isActive = true;
 }

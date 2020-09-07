@@ -587,7 +587,6 @@ MonoBehaviour:
   playerCamera: {fileID: 963194227}
   lookSpeed: 2
   lookXLimit: 45
-  canMove: 1
 --- !u!143 &529198610
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1664,7 +1663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd1e77eedf7e4242862a656741f6243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldRenderStageZones: 0
+  shouldRenderStageZones: 1
 --- !u!4 &1867552675
 Transform:
   m_ObjectHideFlags: 0
