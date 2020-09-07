@@ -7,18 +7,22 @@ public class SZDelegate : WaiterDelegate, ISelectable
     [SerializeField] private Material defaultMaterial;
     [SerializeField] private Material selectedMaterial;
     [SerializeField] private Material redMaterial;
-
     private bool shouldRender;
     private MeshRenderer sphereMeshRenderer;
 
+    private PlayerStateManager stateManager;
     private SimpleWaiter waiter;
+    private StageZone stageZone;
 
     private void Start()
     {
         shouldRender = Options.Instance.shouldRenderStageZones;
         sphereMeshRenderer = GetComponent<MeshRenderer>();
-        waiter = GetComponent<SimpleWaiter>();
         sphereMeshRenderer.enabled = false;
+
+        stateManager = PlayerStateManager.Instance;
+        waiter = GetComponent<SimpleWaiter>();
+        stageZone = GetComponent<StageZone>();
     }
     public override void OnActivated()
     {
@@ -28,7 +32,8 @@ public class SZDelegate : WaiterDelegate, ISelectable
 
     public override void OnFinished()
     {
-
+        //выключить коллайдер
+        sphereMeshRenderer.enabled = false;
     }
 
     public void OnSelected()
@@ -39,6 +44,7 @@ public class SZDelegate : WaiterDelegate, ISelectable
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 sphereMeshRenderer.material = redMaterial;
+                stateManager.SwitchToSZ(stageZone);
             }
         }
     }

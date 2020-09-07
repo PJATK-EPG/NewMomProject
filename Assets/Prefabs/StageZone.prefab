@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2490642803987594140}
   - component: {fileID: 8189387285575386240}
   - component: {fileID: 4331425495369167822}
+  - component: {fileID: 3750016140934376678}
   m_Layer: 0
   m_Name: SelectableArea
   m_TagString: Selectable
@@ -157,7 +158,20 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: 9ddd58aa17d249f45adc927103555233, type: 2}
   selectedMaterial: {fileID: 2100000, guid: ed7796346e29ef7458defd4670ababb4, type: 2}
   redMaterial: {fileID: 2100000, guid: 9c3852024e1ab484ea695f6b4b064b2d, type: 2}
-  sphereMeshRenderer: {fileID: 2490642803987594139}
+--- !u!114 &3750016140934376678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2490642803987594142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc262bea2059e247b2369af5736549f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraArm: {fileID: 2490642803987594142}
+  cameraPoint: {fileID: 3477672657948147634}
 --- !u!1 &3477672657948147634
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3477672657948147634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.58}
+  m_LocalPosition: {x: 0, y: 0, z: -0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2490642803987594137}

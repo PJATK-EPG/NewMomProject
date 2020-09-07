@@ -20,6 +20,14 @@ public class PlayerStateManager : MonoBehaviour
         fpsState = FPSController.Instance;
         szState = SZController.Instance;
         switcher = StateSwitcher.Instance;
+        if (Options.Instance.isFP_isFirst)
+        {
+            fpsState.Unlock();
+        }
+        else
+        {
+            szState.Unlock();
+        }
     }
 
     public void SwitchToFP()
@@ -27,8 +35,9 @@ public class PlayerStateManager : MonoBehaviour
         szState.Lock();
     }
 
-    public void SwitchToSZ()
+    public void SwitchToSZ(StageZone stageZone)
     {
         fpsState.Lock();
+        switcher.SwitchToSZ(stageZone);
     }
 }
