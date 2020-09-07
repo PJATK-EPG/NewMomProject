@@ -70,7 +70,6 @@ public class StateSwitcher : MonoBehaviour
         mainCamera.SetActive(false);
         additionalCamera.SetActive(false);
         canAnimateToSZ = true;
-        //fpsState.Unlock();
     }
 
     public void SwitchToSZ(StageZone aimStageZone)
@@ -86,7 +85,6 @@ public class StateSwitcher : MonoBehaviour
         additionalCamera.SetActive(true);
 
         canAnimateToSZ = true;
-        //szState.Unlock();
     }
 
     public void RestartAdditionalCamera()

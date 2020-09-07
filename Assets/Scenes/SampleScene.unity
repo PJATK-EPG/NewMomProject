@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 529198609}
   - component: {fileID: 529198611}
   m_Layer: 0
-  m_Name: FPS_Controller
+  m_Name: PlayerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -649,6 +649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ffc72ed0413f441b11d65240bce045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  additionalCamera: {fileID: 1078186034}
+  cameraArm: {fileID: 23601352}
 --- !u!1 &641661100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,7 +1916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFP_isFirst: 1
   shouldRenderStageZones: 1
-  shouldUseDefPoints: 1
+  shouldUseDefPoints: 0
 --- !u!4 &1867552675
 Transform:
   m_ObjectHideFlags: 0
