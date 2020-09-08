@@ -38,7 +38,7 @@ public class StateSwitcher : MonoBehaviour
     }
     private void Update()
     {
-        if (canAnimateToFP)
+        if (canAnimateToFP)//Сделать лок на скрипт кнопки
         {
             if ((Vector3.Distance(cameraArm.transform.position, armPosition) > animationAccuracy)
            || (Quaternion.Angle(cameraArm.transform.rotation, armAngleRotation) > animationAccuracy)
