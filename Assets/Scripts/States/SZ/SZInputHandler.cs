@@ -10,7 +10,7 @@ public class SZInputHandler :  StateInputHandler
     [SerializeField] private Transform cameraArm;
 
     private Vector3 localRotation;
-    private float cameraDistance = 50f;
+    private float cameraDistance;
 
     private float mouseSensitivity = 4f;
     private float scrollSensitvity = 2f;
@@ -18,7 +18,7 @@ public class SZInputHandler :  StateInputHandler
     private float scrollDampening = 6f;
 
     private bool isMousePressed;
-    
+
     public override void HandleInput()
     {
         HandleMouse();
@@ -54,17 +54,22 @@ public class SZInputHandler :  StateInputHandler
     }
 
     public void HandleScrollWheel()
-    {
+    {   
         if (Input.GetAxis("Mouse ScrollWheel") != 0f)
         {
             float ScrollAmount = Input.GetAxis("Mouse ScrollWheel") * scrollSensitvity;
             ScrollAmount *= (cameraDistance * 0.3f);
             cameraDistance += ScrollAmount * -1f;
-            cameraDistance = Mathf.Clamp(cameraDistance, 1.5f, 100f);
+            cameraDistance = Mathf.Clamp(cameraDistance, 0f, 5f);
         }
         if (additionalCamera.localPosition.z != cameraDistance * -1f)
         {
             additionalCamera.localPosition = new Vector3(0f, 0f, Mathf.Lerp(additionalCamera.localPosition.z, cameraDistance * -1f, Time.deltaTime * scrollDampening));
         }
+    }
+
+    public void ResetCameraDistance()
+    {
+        cameraDistance = additionalCamera.localPosition.z * -1;
     }
 }

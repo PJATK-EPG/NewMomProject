@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PlayerState : MonoBehaviour
 {
-    [SerializeField]private StateInputHandler inputHandler;
+    [SerializeField] protected StateInputHandler inputHandler;
     protected bool isActive;
 
     private void Update()
@@ -14,5 +14,9 @@ public abstract class PlayerState : MonoBehaviour
     }
     public abstract void Lock();
     public abstract void Unlock();
+
+    public void Pause() => isActive = false;
+
+    public void Unpause() => isActive = true;
 
 }

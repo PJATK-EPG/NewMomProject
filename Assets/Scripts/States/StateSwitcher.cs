@@ -10,7 +10,7 @@ public class StateSwitcher : MonoBehaviour
     [SerializeField] private GameObject cameraArm;
     [SerializeField] private GameObject additionalCamera;
 
-    private FPSController fpsState;
+    private FPController fpsState;
     private SZController szState;
 
     private bool canAnimateToFS;
@@ -33,7 +33,7 @@ public class StateSwitcher : MonoBehaviour
 
     private void Start()
     {
-        fpsState = FPSController.Instance;
+        fpsState = FPController.Instance;
         szState = SZController.Instance;
     }
     private void Update()
@@ -67,9 +67,10 @@ public class StateSwitcher : MonoBehaviour
 
     public void SwitchToFP()
     {
-        mainCamera.SetActive(false);
-        additionalCamera.SetActive(false);
-        canAnimateToSZ = true;
+        // mainCamera.SetActive(false);
+        // additionalCamera.SetActive(false);
+        // canAnimateToSZ = true;
+        //Debug.Log("112233");
     }
 
     public void SwitchToSZ(StageZone aimStageZone)

@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FPController))]
 [RequireComponent(typeof(CharacterController))]
-
-public class FPSController : MonoBehaviour
+public class FPInputHandler : StateInputHandler
 {
-    public static FPSController Instance { get; private set; }
-
-    private bool isActive;
-
     [SerializeField] private float walkingSpeed = 7.5f;
     [SerializeField] private float runningSpeed = 11.5f;
     [SerializeField] private float jumpSpeed = 8.0f;
@@ -22,30 +18,18 @@ public class FPSController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    void Start()
+    private void Start()
     {
         characterController = GetComponent<CharacterController>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
-    void Update()
+    public override void HandleInput()
     {
-        if (isActive)
-        {
-            float movementDirectionY = CountMovement();
-            CountGravity(movementDirectionY);
-            characterController.Move(moveDirection * Time.deltaTime);
-            MakeRotation();
-        }
+        float movementDirectionY = CountMovement();
+        CountGravity(movementDirectionY);
+        characterController.Move(moveDirection * Time.deltaTime);
+        MakeRotation();
     }
-
     private float CountMovement()
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -82,7 +66,4 @@ public class FPSController : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
     }
-
-    public void Lock() => isActive = false;
-    public void Unlock() => isActive = true;
 }

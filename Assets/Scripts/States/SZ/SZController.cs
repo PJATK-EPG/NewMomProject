@@ -7,6 +7,11 @@ public class SZController : PlayerState
     //dobavit ograniczenie
     public static SZController Instance { get; private set; }
 
+    public GameObject centerPoint;
+    public GameObject vignette;
+    public GameObject backButton;
+
+    public GameObject selectionManager;
     private void Awake()
     {
         Instance = this;
@@ -22,5 +27,16 @@ public class SZController : PlayerState
     public override void Unlock()
     {
         this.isActive = true;
+
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+
+        centerPoint.SetActive(false);
+        vignette.SetActive(true);
+        backButton.SetActive(true);
+
+        selectionManager.SetActive(false);
+
+        this.inputHandler.GetComponent<SZInputHandler>().ResetCameraDistance();
     }
 }

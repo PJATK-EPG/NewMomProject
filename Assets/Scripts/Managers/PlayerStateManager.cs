@@ -6,7 +6,7 @@ public class PlayerStateManager : MonoBehaviour
 {
     public static PlayerStateManager Instance { get; private set; }
 
-    private FPSController fpsState;
+    private FPController fpsState;
     private SZController szState;
     private StateSwitcher switcher;
 
@@ -17,7 +17,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Start()
     {
-        fpsState = FPSController.Instance;
+        fpsState = FPController.Instance;
         szState = SZController.Instance;
         switcher = StateSwitcher.Instance;
         if (Options.Instance.isFP_isFirst)
@@ -33,6 +33,7 @@ public class PlayerStateManager : MonoBehaviour
     public void SwitchToFP()
     {
         szState.Lock();
+        Debug.Log("112233");
     }
 
     public void SwitchToSZ(StageZone stageZone)
