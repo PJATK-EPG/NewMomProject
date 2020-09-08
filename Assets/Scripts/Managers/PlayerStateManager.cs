@@ -30,15 +30,15 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
-    public void SwitchToFP()
+    public void SwitchFromSZ_ToFP()
     {
         szState.Lock();
-        Debug.Log("112233");
+        switcher.SwitchFromSZ_ToFP();
     }
 
-    public void SwitchToSZ(StageZone stageZone)
+    public void SwitchFromFP_ToSZ(StageZone stageZone)
     {
         fpsState.Lock();
-        switcher.SwitchToSZ(stageZone);
+        switcher.SwitchFromFP_ToSZ(stageZone);
     }
 }

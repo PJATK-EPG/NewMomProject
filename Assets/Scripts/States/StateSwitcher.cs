@@ -13,7 +13,7 @@ public class StateSwitcher : MonoBehaviour
     private FPController fpsState;
     private SZController szState;
 
-    private bool canAnimateToFS;
+    private bool canAnimateToFP;
     private bool canAnimateToSZ;
 
     private Vector3 armPosition;
@@ -38,9 +38,24 @@ public class StateSwitcher : MonoBehaviour
     }
     private void Update()
     {
-        if (canAnimateToFS)
+        if (canAnimateToFP)
         {
+            if ((Vector3.Distance(cameraArm.transform.position, armPosition) > animationAccuracy)
+           || (Quaternion.Angle(cameraArm.transform.rotation, armAngleRotation) > animationAccuracy)
+           || (Vector3.Distance(additionalCamera.transform.localPosition, cameraPosition) > animationAccuracy))
+            {
+                cameraArm.transform.position = Vector3.MoveTowards(cameraArm.transform.position, armPosition, armStep * Time.deltaTime);
+                additionalCamera.transform.localPosition = Vector3.MoveTowards(additionalCamera.transform.localPosition, cameraPosition, cameraStep * Time.deltaTime);
+                cameraArm.transform.rotation = Quaternion.Lerp(cameraArm.transform.rotation, armAngleRotation, armRotateStep * Time.deltaTime);
+            }
+            else
+            {
+                mainCamera.SetActive(true);
+                additionalCamera.SetActive(false);
 
+                fpsState.Unlock();
+                canAnimateToFP = false;
+            }
         }
         else if (canAnimateToSZ)
         {
@@ -65,15 +80,20 @@ public class StateSwitcher : MonoBehaviour
         }
     }
 
-    public void SwitchToFP()
+    public void SwitchFromSZ_ToFP()
     {
         // mainCamera.SetActive(false);
         // additionalCamera.SetActive(false);
         // canAnimateToSZ = true;
         //Debug.Log("112233");
+
+        armPosition = mainCamera.transform.position;
+        armAngleRotation = Quaternion.Euler(mainCamera.transform.eulerAngles);
+        cameraPosition = Vector3.zero;
+        canAnimateToFP = true;
     }
 
-    public void SwitchToSZ(StageZone aimStageZone)
+    public void SwitchFromFP_ToSZ(StageZone aimStageZone)
     {
         CameraParams camParams = aimStageZone.GetCamParams();
         armPosition = camParams.armPosition;

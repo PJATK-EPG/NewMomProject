@@ -44,7 +44,7 @@ public class SZDelegate : WaiterDelegate, ISelectable
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 sphereMeshRenderer.material = redMaterial;
-                stateManager.SwitchToSZ(stageZone);
+                stateManager.SwitchFromFP_ToSZ(stageZone);
             }
         }
     }
