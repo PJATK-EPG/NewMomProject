@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8189387285575386240}
   - component: {fileID: 4331425495369167822}
   - component: {fileID: 3750016140934376678}
+  - component: {fileID: 5584709900161051425}
   m_Layer: 0
   m_Name: SelectableArea
   m_TagString: Selectable
@@ -170,9 +171,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc262bea2059e247b2369af5736549f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraArm: {fileID: 2490642803987594142}
+  parent: {fileID: 0}
+  children: []
+--- !u!114 &5584709900161051425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2490642803987594142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6badbcdc3846946a73e6ad9a043393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   cameraPoint: {fileID: 3477672657948147634}
-  minimalDistance: 0.24
+  cameraArm: {fileID: 2490642803987594142}
+  distance: 1
+  minimalDistance: 0.75
+  maxDistance: 2
+  topAngle: 90
+  bottomAngle: 0
+  freeAspect: 1
+  leftAngle: -180
+  rightAngle: 180
 --- !u!1 &3477672657948147634
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3477672657948147634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.6}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2490642803987594137}

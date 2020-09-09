@@ -9,6 +9,8 @@ public class SZInputHandler :  StateInputHandler
     [SerializeField] private Transform additionalCamera;
     [SerializeField] private Transform cameraArm;
 
+    private StageZoneParams szParams;
+
     private Vector3 localRotation;
     private float cameraDistance;
 
@@ -42,10 +44,10 @@ public class SZInputHandler :  StateInputHandler
                 localRotation.x += Input.GetAxis("Mouse X") * mouseSensitivity;
                 localRotation.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-                if (localRotation.y < 0f)
-                    localRotation.y = 0f;
-                else if (localRotation.y > 90f)
-                    localRotation.y = 90f;
+                //localRotation.x = MyMathfClamp.Clamp(localRotation.x, szParams.xBorder);
+                localRotation.x = MyMathfClamp.Clamp(localRotation.x,new float[] { -360, 360 });
+                localRotation.y = Mathf.Clamp(localRotation.y, szParams.yBorder[0], szParams.yBorder[1]);
+
             }
 
             Quaternion QT = Quaternion.Euler(localRotation.y, localRotation.x, 0);
@@ -60,7 +62,7 @@ public class SZInputHandler :  StateInputHandler
             float ScrollAmount = Input.GetAxis("Mouse ScrollWheel") * scrollSensitvity;
             ScrollAmount *= (cameraDistance * 0.3f);
             cameraDistance += ScrollAmount * -1f;
-            cameraDistance = Mathf.Clamp(cameraDistance, 0f, 5f);
+            cameraDistance = Mathf.Clamp(cameraDistance, szParams.zBorder[0], szParams.zBorder[1]);
         }
         if (additionalCamera.localPosition.z != cameraDistance * -1f)
         {
@@ -71,5 +73,10 @@ public class SZInputHandler :  StateInputHandler
     public void ResetCameraDistance()
     {
         cameraDistance = additionalCamera.localPosition.z * -1;
+    }
+
+    public void SetStageZoneParams(StageZoneParams szParams)
+    {
+        this.szParams = szParams;
     }
 }

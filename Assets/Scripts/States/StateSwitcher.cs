@@ -95,10 +95,12 @@ public class StateSwitcher : MonoBehaviour
 
     public void SwitchFromFP_ToSZ(StageZone aimStageZone)
     {
-        CameraParams camParams = aimStageZone.GetCamParams();
+        CameraParams camParams = aimStageZone.GetDefaultCamParams();
         armPosition = camParams.armPosition;
         armAngleRotation = Quaternion.Euler(camParams.armRotation);
         cameraPosition = camParams.cameraPosition;
+
+        szState.SetStageZoneParams(aimStageZone.GetStageZoneParams());
 
         RestartAdditionalCamera();
 
