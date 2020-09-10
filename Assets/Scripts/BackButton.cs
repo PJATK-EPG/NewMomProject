@@ -26,8 +26,10 @@ public class BackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
         else
         {
-            playerStateManager.SwitchFromSZ_ToSZ_UP(StageZone stageZone)
+            playerStateManager.SwitchFromSZ_ToSZ_UP();
         }
+
+        gameObject.active = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

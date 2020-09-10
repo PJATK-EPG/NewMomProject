@@ -79,4 +79,9 @@ public class SZInputHandler :  StateInputHandler
     {
         this.szParams = szParams;
     }
+
+    public CameraParams GetCameraParams()
+    {
+        return new CameraParams(cameraArm.position, cameraArm.eulerAngles, additionalCamera.position);
+    }
 }

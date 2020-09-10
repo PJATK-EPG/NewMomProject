@@ -40,27 +40,28 @@ public class PlayerStateManager : MonoBehaviour
     public void SwitchFromSZ_ToFP()
     {
         szState.Lock();
-        ///sasddasd
+        szMemory.SetFPLocation();
         switcher.SwitchFromSZ_ToFP();
     }
 
-    public void SwitchFromFP_ToSZ(StageZone stageZone)
+    public void SwitchFromFP_ToSZ(StageZone aimStageZone)
     {
         fpsState.Lock();
-        szMemory.SetCurrentLocation(stageZone);
-        switcher.SwitchFromFP_ToSZ(stageZone);
+        szMemory.SetCurrentLocation(aimStageZone);
+        switcher.SwitchFromFP_ToSZ(aimStageZone);
     }
 
-    public void SwitchFromSZ_ToSZ_DOWN(StageZone stageZone)
+    public void SwitchFromSZ_ToSZ_DOWN(StageZone aimStageZone)
     {
         szState.Lock();
-        szMemory.SetCurrentLocation(stageZone);
-        switcher.SwitchFromSZ_ToSZ_DOWN(stageZone);
+        szMemory.SetCurrentLocation(aimStageZone);
+        switcher.SwitchFromSZ_ToSZ_DOWN(aimStageZone);
 
         
     }
-    public void SwitchFromSZ_ToSZ_UP(StageZone stageZone)
+    public void SwitchFromSZ_ToSZ_UP()
     {
-    // считывать откуда возвращаемся.
+        szState.Lock();
+        switcher.SwitchFromSZ_ToSZ_UP();
     }
 }

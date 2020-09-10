@@ -45,4 +45,9 @@ public class SZController : PlayerState
     {
         (inputHandler as SZInputHandler).SetStageZoneParams(szParams);
     }
+
+    public CameraParams GetCameraParams()
+    {
+        return (inputHandler as SZInputHandler).GetCameraParams();
+    }
 }
