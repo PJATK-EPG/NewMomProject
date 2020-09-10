@@ -18,6 +18,8 @@ public class StageZoneParams
 [RequireComponent(typeof(StageZone))]
 public class StageZoneInformer : MonoBehaviour
 {
+    private StageZone stageZone;
+
     [SerializeField] private GameObject cameraPoint;
     [SerializeField] private GameObject cameraArm;
 
@@ -46,11 +48,24 @@ public class StageZoneInformer : MonoBehaviour
     [Range(0, 180)]
     [SerializeField] private float rightAngle = 0f;
 
+    private void Awake()
+    {
+        stageZone = GetComponent<StageZone>();
+    }
     private void Start()
     {
-        defaultCamParams = new CameraParams(cameraArm.transform.position, cameraArm.transform.eulerAngles, cameraPoint.transform.localPosition);
+        defaultCamParams = new CameraParams(cameraArm.transform.position,
+                                            cameraArm.transform.eulerAngles,
+                                            cameraPoint.transform.localPosition * RecountScale());
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("My real scale: " + RecountScale());
+        }
+    }
     public CameraParams GetDefaultCamParams()
     {
         return defaultCamParams;
@@ -61,7 +76,19 @@ public class StageZoneInformer : MonoBehaviour
         StageZoneParams returnParams = new StageZoneParams(leftAngle, rightAngle, bottomAngle, topAngle, minimalDistance, maxDistance);
         if (freeAspect)
             returnParams= new StageZoneParams(-360, 360, bottomAngle, topAngle, minimalDistance, maxDistance);
-        return new StageZoneParams(leftAngle, rightAngle, bottomAngle, topAngle, minimalDistance, maxDistance);
+        return returnParams;
+    }
+
+    public float RecountScale()
+    {
+        if (stageZone.GetParent() == null)
+        {
+            return cameraArm.transform.localScale.x;
+        }
+        else
+        {
+            return cameraArm.transform.localScale.x * stageZone.GetParent().szInformer.RecountScale();
+        }
     }
 
     private void OnValidate()
@@ -91,8 +118,8 @@ public class StageZoneInformer : MonoBehaviour
         Handles.DrawWireDisc(cameraArm.transform.position, Vector3.up, maxDistance);
 
         if (maxDistance > minimalDistance
-            && maxDistance >= (-1) * cameraPoint.transform.localPosition.z
-            && minimalDistance <= (-1) * cameraPoint.transform.localPosition.z)
+            && maxDistance >= (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x
+            && minimalDistance <= (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x)
         {
             Handles.color = new Color(0.09f, 0.58f, 0, 0.1f);
         }
@@ -107,16 +134,16 @@ public class StageZoneInformer : MonoBehaviour
         Vector3 vect = new Vector3(0, 0, -distance);
         Handles.color = Color.cyan;
 
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, topAngle, (-1) * cameraPoint.transform.localPosition.z);
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, topAngle, (-1) * cameraPoint.transform.localPosition.z + 0.01f);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, topAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, topAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
 
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, bottomAngle, (-1) * cameraPoint.transform.localPosition.z);
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, bottomAngle, (-1) * cameraPoint.transform.localPosition.z + 0.01f);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, bottomAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, bottomAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
 
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * leftAngle, (-1) * cameraPoint.transform.localPosition.z);
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * leftAngle, (-1) * cameraPoint.transform.localPosition.z + 0.01f);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * leftAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * leftAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
 
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * rightAngle, (-1) * cameraPoint.transform.localPosition.z);
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * rightAngle, (-1) * cameraPoint.transform.localPosition.z + 0.01f);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * rightAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * rightAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
     }
 }

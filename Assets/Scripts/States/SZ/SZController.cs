@@ -11,7 +11,7 @@ public class SZController : PlayerState
     public GameObject vignette;
     public GameObject backButton;
 
-    public GameObject selectionManager;
+    [SerializeField] private SelectionManager selectionManager;
     private void Awake()
     {
         Instance = this;
@@ -32,13 +32,11 @@ public class SZController : PlayerState
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
 
-       
-
         centerPoint.SetActive(false);
         vignette.SetActive(true);
         backButton.SetActive(true);
 
-        selectionManager.SetActive(false);
+        selectionManager.SetState(PlayerStateType.StageZone);
 
         this.inputHandler.GetComponent<SZInputHandler>().ResetCameraDistance();
     }

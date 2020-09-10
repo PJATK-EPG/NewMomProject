@@ -44,8 +44,8 @@ public class SZInputHandler :  StateInputHandler
                 localRotation.x += Input.GetAxis("Mouse X") * mouseSensitivity;
                 localRotation.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-                //localRotation.x = MyMathfClamp.Clamp(localRotation.x, szParams.xBorder);
-                localRotation.x = MyMathfClamp.Clamp(localRotation.x,new float[] { -360, 360 });
+                localRotation.x = MyMathfClamp.Clamp(localRotation.x, szParams.xBorder);
+                //localRotation.x = MyMathfClamp.Clamp(localRotation.x,new float[] { -360, 360 });
                 localRotation.y = Mathf.Clamp(localRotation.y, szParams.yBorder[0], szParams.yBorder[1]);
 
             }

@@ -6,6 +6,15 @@ public class SelectionManager : MonoBehaviour
 {
     private ISelectable selectedObj;
 
+    private PlayerStateType type;
+
+    private void Start()
+    {
+        if (Options.Instance.isFP_isFirst)
+        {
+            type = PlayerStateType.FirstPerson;
+        }
+    }
     void Update()
     {
         if (selectedObj != null)
@@ -24,13 +33,32 @@ public class SelectionManager : MonoBehaviour
 
     public void MakeRaycast()
     {
-        var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        if (Physics.Raycast(ray, out var hit))
+        if (type == PlayerStateType.FirstPerson)
         {
-            if (hit.transform.CompareTag("Selectable"))
+            var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            if (Physics.Raycast(ray, out var hit))
             {
-                selectedObj = hit.transform.GetComponent<ISelectable>();
+                if (hit.transform.CompareTag("Selectable"))
+                {
+                    selectedObj = hit.transform.GetComponent<ISelectable>();
+                }
             }
         }
+        else if(type == PlayerStateType.StageZone)
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var hit))
+            {
+                if (hit.transform.CompareTag("Selectable"))
+                {
+                    selectedObj = hit.transform.GetComponent<ISelectable>();
+                }
+            }
+        }
+    }
+
+    public void SetState(PlayerStateType type)
+    {
+        this.type = type;
     }
 }

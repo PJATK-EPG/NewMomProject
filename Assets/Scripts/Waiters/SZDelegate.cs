@@ -11,6 +11,7 @@ public class SZDelegate : WaiterDelegate, ISelectable
     private MeshRenderer sphereMeshRenderer;
 
     private PlayerStateManager stateManager;
+    private SZMemory szMemory;
     private SimpleWaiter waiter;
     private StageZone stageZone;
 
@@ -21,6 +22,7 @@ public class SZDelegate : WaiterDelegate, ISelectable
         sphereMeshRenderer.enabled = false;
 
         stateManager = PlayerStateManager.Instance;
+        szMemory = SZMemory.Instance;
         waiter = GetComponent<SimpleWaiter>();
         stageZone = GetComponent<StageZone>();
     }
@@ -44,7 +46,7 @@ public class SZDelegate : WaiterDelegate, ISelectable
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 sphereMeshRenderer.material = redMaterial;
-                stateManager.SwitchFromFP_ToSZ(stageZone);
+                SelectAnimation();
             }
         }
     }
@@ -52,5 +54,20 @@ public class SZDelegate : WaiterDelegate, ISelectable
     public void OnDeselected()
     {
         sphereMeshRenderer.material = defaultMaterial;
+    }
+
+    public void SelectAnimation()
+    {
+        StageZone currentStageZone = szMemory.GetCurrentStageZone();
+        if(currentStageZone == null)
+        {
+            stateManager.SwitchFromFP_ToSZ(stageZone);
+        }else if (currentStageZone.isParentOf(stageZone))
+        {
+            stateManager.SwitchFromSZ_ToSZ_DOWN(stageZone);
+        }else if (stageZone.isParentOf(currentStageZone))
+        {
+
+        }
     }
 }

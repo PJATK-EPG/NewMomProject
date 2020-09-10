@@ -8,7 +8,7 @@ public class FPController : PlayerState
     public GameObject vignette;
     public GameObject backButton;
 
-    public GameObject selectionManager;
+    [SerializeField] private SelectionManager selectionManager;
 
     private void Awake()
     {
@@ -27,6 +27,6 @@ public class FPController : PlayerState
         vignette.SetActive(false);
         backButton.SetActive(false);
 
-        selectionManager.SetActive(true);
+        selectionManager.SetState(PlayerStateType.FirstPerson);
     }
 }

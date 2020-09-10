@@ -24,7 +24,7 @@ public class StateSwitcher : MonoBehaviour
     private float armRotateStep = 2f;
     private float cameraStep = 2f;
 
-    private float animationAccuracy = 0.125f;
+    private float animationAccuracy = 0.025f;
 
     private void Awake()
     {
@@ -70,7 +70,7 @@ public class StateSwitcher : MonoBehaviour
             else
             {
                 cameraArm.transform.position = armPosition;
-                additionalCamera.transform.localPosition = cameraPosition;
+                //additionalCamera.transform.localPosition = cameraPosition;
                 if (Options.Instance.shouldUseDefPoints)
                     cameraArm.transform.rotation = armAngleRotation;
 
@@ -82,11 +82,6 @@ public class StateSwitcher : MonoBehaviour
 
     public void SwitchFromSZ_ToFP()
     {
-        // mainCamera.SetActive(false);
-        // additionalCamera.SetActive(false);
-        // canAnimateToSZ = true;
-        //Debug.Log("112233");
-
         armPosition = mainCamera.transform.position;
         armAngleRotation = Quaternion.Euler(mainCamera.transform.eulerAngles);
         cameraPosition = Vector3.zero;
@@ -104,13 +99,30 @@ public class StateSwitcher : MonoBehaviour
 
         RestartAdditionalCamera();
 
+        
+
         mainCamera.SetActive(false);
         additionalCamera.SetActive(true);
 
         canAnimateToSZ = true;
     }
 
-    public void RestartAdditionalCamera()
+    public void SwitchFromSZ_ToSZ_DOWN(StageZone aimStageZone)
+    {
+        CameraParams camParams = aimStageZone.GetDefaultCamParams();
+        armPosition = camParams.armPosition;
+        armAngleRotation = Quaternion.Euler(camParams.armRotation);
+        cameraPosition = camParams.cameraPosition;
+
+
+        float d = Vector3.Distance(additionalCamera.transform.localPosition, cameraPosition);
+
+        szState.SetStageZoneParams(aimStageZone.GetStageZoneParams());
+
+        canAnimateToSZ = true;
+    }
+
+        public void RestartAdditionalCamera()
     {
         cameraArm.transform.position = mainCamera.transform.position ;
         cameraArm.transform.rotation = mainCamera.transform.rotation;
