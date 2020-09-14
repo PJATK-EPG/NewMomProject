@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SZController : PlayerState
-{
-    //dobavit ograniczenie
+{   
     public static SZController Instance { get; private set; }
 
     public GameObject centerPoint;
@@ -16,9 +15,6 @@ public class SZController : PlayerState
     {
         Instance = this;
     }
-
-    //добавить на лок/анлок появление мыши, появление гуи, реакцию стейдж зон
-    //ПРЯТАТЬ ПЕРСОНАЖА!!!
 
     public override void Lock()
     {
@@ -38,7 +34,7 @@ public class SZController : PlayerState
 
         selectionManager.SetState(PlayerStateType.StageZone);
 
-        this.inputHandler.GetComponent<SZInputHandler>().ResetCameraDistance();
+        this.inputHandler.GetComponent<SZInputHandler>().ResetParams();
     }
 
     public void SetStageZoneParams(StageZoneParams szParams)

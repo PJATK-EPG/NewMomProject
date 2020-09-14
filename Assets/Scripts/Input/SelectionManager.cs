@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
-    private ISelectable selectedObj;
+    public ISelectable selectedObj { get; private set; }
 
     private PlayerStateType type;
 

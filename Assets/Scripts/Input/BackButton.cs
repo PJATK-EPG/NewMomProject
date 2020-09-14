@@ -7,14 +7,12 @@ public class BackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private PlayerStateManager playerStateManager;
     private SZMemory szMemory;
     private SZController szController;
-    private FPController fpController;
 
     private void Start()
     {
         playerStateManager = PlayerStateManager.Instance;
         szMemory = SZMemory.Instance;
         szController = SZController.Instance;
-        fpController = FPController.Instance;
 
         GetComponent<Button>().onClick.AddListener(OnButtonClicked);
     }

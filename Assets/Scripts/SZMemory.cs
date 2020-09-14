@@ -26,9 +26,15 @@ public class SZMemory : MonoBehaviour
     {
         aimStageZone = newStageZone;
     }
+    public void SetStartLocation(StageZone newStageZone)
+    {
+        newStageZone.Disable();
+        currentStageZone = newStageZone;
+    }
+
     public void SetCurrentLocation(StageZone newStageZone)
     {
-        newStageZone.Disactivate();
+        newStageZone.Disable();
         stack.Push(new StackInfo(currentStageZone, szController.GetCameraParams()));
         currentStageZone = newStageZone;
     }
@@ -43,16 +49,20 @@ public class SZMemory : MonoBehaviour
         }
         else
         {
-
+            previousStageZone = currentStageZone;
+            previousStageZone.Enable();
+            stackInfo = stack.Pop();
+            currentStageZone = stackInfo.stageZone;
         }
         return stackInfo;
     }
 
     public void SetFPLocation()
     {
-        currentStageZone.Activate();
+        currentStageZone.Enable();
         previousStageZone = currentStageZone;
         currentStageZone = null;
+        stack.Clear();
     }
 
     public StageZone GetCurrentStageZone()

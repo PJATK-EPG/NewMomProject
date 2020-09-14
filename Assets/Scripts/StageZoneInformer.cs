@@ -25,13 +25,13 @@ public class StageZoneInformer : MonoBehaviour
 
     private CameraParams defaultCamParams;
 
-    [Range(0.5f, 2)]
+    [Range(0.25f, 5)]
     [SerializeField] private float distance = 1f;
 
-    [Range(0.5f, 2)]
+    [Range(0.25f, 5)]
     [SerializeField] private float minimalDistance = 0.5f;
 
-    [Range(0.5f, 2)]
+    [Range(0.25f, 5)]
     [SerializeField] private float maxDistance = 2f;
 
     [Range(0, 90)]

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 125311764737735297}
   - component: {fileID: 7663965455684898365}
   m_Layer: 0
-  m_Name: SelectableArea
+  m_Name: StageZone
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPoint: {fileID: 8234365538087428160}
   cameraArm: {fileID: 3101915026904233692}
-  distance: 1
+  distance: 0.97
   minimalDistance: 0.75
   maxDistance: 1.27
   topAngle: 90
@@ -188,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8234365538087428160}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5658015235201132690}

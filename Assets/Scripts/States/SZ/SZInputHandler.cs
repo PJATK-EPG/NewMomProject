@@ -8,6 +8,7 @@ public class SZInputHandler :  StateInputHandler
   
     [SerializeField] private Transform additionalCamera;
     [SerializeField] private Transform cameraArm;
+    [SerializeField] private SelectionManager selectionManager;
 
     private StageZoneParams szParams;
 
@@ -16,11 +17,10 @@ public class SZInputHandler :  StateInputHandler
 
     private float mouseSensitivity = 4f;
     private float scrollSensitvity = 2f;
-    private float orbitDampening = 10f;
+    private float orbitDampening = 5f;
     private float scrollDampening = 6f;
 
     private bool isMousePressed;
-
     public override void HandleInput()
     {
         HandleMouse();
@@ -29,7 +29,7 @@ public class SZInputHandler :  StateInputHandler
 
     public void HandleMouse()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && selectionManager.selectedObj == null)
         {
             isMousePressed = true;
         }
@@ -41,15 +41,14 @@ public class SZInputHandler :  StateInputHandler
         {
             if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
             {
-                localRotation.x += Input.GetAxis("Mouse X") * mouseSensitivity;
-                localRotation.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
-
-                localRotation.x = MyMathfClamp.Clamp(localRotation.x, szParams.xBorder);
-                //localRotation.x = MyMathfClamp.Clamp(localRotation.x,new float[] { -360, 360 });
-                localRotation.y = Mathf.Clamp(localRotation.y, szParams.yBorder[0], szParams.yBorder[1]);
+                float localRotationX = localRotation.x + Input.GetAxis("Mouse X") * mouseSensitivity;
+                float localRotationY = localRotation.y + Input.GetAxis("Mouse Y") * mouseSensitivity;
+                //Debug.Log(Input.GetAxis("Mouse X") + " " + Input.GetAxis("Mouse Y"));
+                localRotation.x = MyMathfClamp.Clamp(localRotationX, szParams.xBorder);
+                localRotation.y = Mathf.Clamp(localRotationY, szParams.yBorder[0], szParams.yBorder[1]);
 
             }
-
+            //баг про двойной клик
             Quaternion QT = Quaternion.Euler(localRotation.y, localRotation.x, 0);
             cameraArm.rotation = Quaternion.Lerp(cameraArm.rotation, QT, Time.deltaTime * orbitDampening);
         }
@@ -70,8 +69,10 @@ public class SZInputHandler :  StateInputHandler
         }
     }
 
-    public void ResetCameraDistance()
+    public void ResetParams()
     {
+        isMousePressed = false;
+        localRotation = Vector3.zero;
         cameraDistance = additionalCamera.localPosition.z * -1;
     }
 
@@ -82,6 +83,6 @@ public class SZInputHandler :  StateInputHandler
 
     public CameraParams GetCameraParams()
     {
-        return new CameraParams(cameraArm.position, cameraArm.eulerAngles, additionalCamera.position);
+        return new CameraParams(cameraArm.position, cameraArm.eulerAngles, additionalCamera.localPosition);
     }
 }

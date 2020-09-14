@@ -15,6 +15,10 @@ public class SZDelegate : WaiterDelegate, ISelectable
     private SimpleWaiter waiter;
     private StageZone stageZone;
 
+    private float clicked = 0;
+    private float clicktime = 0;
+    private float clickdelay = 0.5f;
+
     private void Start()
     {
         shouldRender = Options.Instance.shouldRenderStageZones;
@@ -43,7 +47,11 @@ public class SZDelegate : WaiterDelegate, ISelectable
         if (waiter.state == WaitersState.activated)
         {
             sphereMeshRenderer.material = selectedMaterial;
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0) && stateManager.stateType == PlayerStateType.FirstPerson)
+            {
+                sphereMeshRenderer.material = redMaterial;
+                SelectAnimation();
+            }else if (DoubleClick() && stateManager.stateType == PlayerStateType.StageZone && isChild())
             {
                 sphereMeshRenderer.material = redMaterial;
                 SelectAnimation();
@@ -54,6 +62,23 @@ public class SZDelegate : WaiterDelegate, ISelectable
     public void OnDeselected()
     {
         sphereMeshRenderer.material = defaultMaterial;
+    }
+
+    bool DoubleClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            clicked++;
+            if (clicked == 1) clicktime = Time.time;
+        }
+        if (clicked > 1 && Time.time - clicktime < clickdelay)
+        {
+            clicked = 0;
+            clicktime = 0;
+            return true;
+        }
+        else if (clicked > 2 || Time.time - clicktime > 1) clicked = 0;
+        return false;
     }
 
     public void SelectAnimation()
@@ -69,5 +94,10 @@ public class SZDelegate : WaiterDelegate, ISelectable
         {
 
         }
+    }
+
+    public bool isChild()
+    {
+        return szMemory.GetCurrentStageZone().isParentOf(stageZone);
     }
 }

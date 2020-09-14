@@ -6,10 +6,6 @@ using UnityEngine;
 
 public class StageZone : MonoBehaviour
 {
-    //хранит всю информацию о
-    //1)дети-родители
-    //2)камера инфо
-
     [SerializeField] private StageZone parent;
     [SerializeField] private List<StageZone> children;
 
@@ -23,6 +19,13 @@ public class StageZone : MonoBehaviour
         collider = GetComponent<SphereCollider>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
+    private void Start()
+    {
+        if (parent != null)
+        {
+            Disactivate();
+        }
+    }
 
     public CameraParams GetDefaultCamParams()
     {
@@ -33,6 +36,27 @@ public class StageZone : MonoBehaviour
     {
         return szInformer.GetStageZoneParams();
     }
+
+    public void Enable()
+    {
+        collider.enabled = true;
+        meshRenderer.enabled = true;
+        foreach(StageZone child in children)
+        {
+            child.Disactivate();
+        }
+    }
+
+    public void Disable()
+    {
+        collider.enabled = false;
+        meshRenderer.enabled = false;
+        foreach (StageZone child in children)
+        {
+            child.Activate();
+        }
+    }
+
 
     public void Activate()
     {
