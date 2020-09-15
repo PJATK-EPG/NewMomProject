@@ -130,6 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 23601352}
+  - component: {fileID: 23601353}
   m_Layer: 0
   m_Name: CameraArm
   m_TagString: Untagged
@@ -152,6 +153,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &23601353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23601351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c877c4ffb88cd84c891cf1194979d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eulerAngX: 0
+  eulerAngY: 0
+  eulerAngZ: 0
+  yyyyX: 0
 --- !u!1 &47215069
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,6 +954,7 @@ MonoBehaviour:
   additionalCamera: {fileID: 1078186034}
   cameraArm: {fileID: 23601352}
   selectionManager: {fileID: 242681954}
+  isFirstReseting: 0
 --- !u!114 &529198612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,6 +972,7 @@ MonoBehaviour:
   vignette: {fileID: 1598652242}
   backButton: {fileID: 562337852}
   selectionManager: {fileID: 242681954}
+  szMemory: {fileID: 641661104}
 --- !u!114 &529198613
 MonoBehaviour:
   m_ObjectHideFlags: 0

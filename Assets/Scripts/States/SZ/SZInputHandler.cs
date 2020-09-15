@@ -82,7 +82,6 @@ public class SZInputHandler :  StateInputHandler
         }
         
         cameraDistance = additionalCamera.localPosition.z * -1;
-        Debug.Log("Reseted");
     }
 
     public void SetStageZoneParams(StageZoneParams szParams)

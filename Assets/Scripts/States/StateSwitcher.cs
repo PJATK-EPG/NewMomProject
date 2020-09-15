@@ -30,6 +30,7 @@ public class StateSwitcher : MonoBehaviour
     private float cameraStep = 2.5f;
 
     private float animationAccuracy = 0.125f;
+    private float relativeVar = 2.5f;
     private float relativeAnimSpeed;
 
 
@@ -112,7 +113,7 @@ public class StateSwitcher : MonoBehaviour
 
     public void RecountRelativeAnimSpeed()
     {
-        relativeAnimSpeed = Vector3.Distance(cameraArm.transform.position, armPosition)/2;
+        relativeAnimSpeed = Vector3.Distance(cameraArm.transform.position, armPosition)/ relativeVar;
     }
     public void RestartAdditionalCamera()
     {

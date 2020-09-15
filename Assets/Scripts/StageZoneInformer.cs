@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if (UNITY_EDITOR)
+using UnityEditor;
+#endif
 using UnityEngine;
 
 public class StageZoneParams
@@ -83,7 +85,7 @@ public class StageZoneInformer : MonoBehaviour
             return cameraArm.transform.localScale.x * stageZone.GetParent().szInformer.RecountScale();
         }
     }
-
+#if (UNITY_EDITOR)
     private void OnValidate()
     {
         cameraPoint.transform.localPosition = new Vector3(0, 0, -1 * distance);
@@ -139,4 +141,5 @@ public class StageZoneInformer : MonoBehaviour
         Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * rightAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
         Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * rightAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
     }
+#endif
 }

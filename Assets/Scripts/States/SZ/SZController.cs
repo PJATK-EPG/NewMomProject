@@ -20,6 +20,7 @@ public class SZController : PlayerState
     public override void Lock()
     {
         this.isActive = false;
+        backButton.SetActive(false) ;
     }
 
     public override void Unlock()
