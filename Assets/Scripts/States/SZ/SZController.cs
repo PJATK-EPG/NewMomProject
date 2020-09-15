@@ -11,6 +11,7 @@ public class SZController : PlayerState
     public GameObject backButton;
 
     [SerializeField] private SelectionManager selectionManager;
+    [SerializeField] private SZMemory szMemory;
     private void Awake()
     {
         Instance = this;
@@ -34,7 +35,13 @@ public class SZController : PlayerState
 
         selectionManager.SetState(PlayerStateType.StageZone);
 
-        this.inputHandler.GetComponent<SZInputHandler>().ResetParams();
+        inputHandler.GetComponent<SZInputHandler>().ResetParams();
+        
+    }
+
+    public void PrepareForFirstReseting()
+    {
+        inputHandler.GetComponent<SZInputHandler>().isFirstReseting = true;
     }
 
     public void SetStageZoneParams(StageZoneParams szParams)

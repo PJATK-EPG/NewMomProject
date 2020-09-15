@@ -103,6 +103,7 @@ public class StateSwitcher : MonoBehaviour
         }
         else 
         {
+            szState.PrepareForFirstReseting();
             szState.Unlock();
         }
 

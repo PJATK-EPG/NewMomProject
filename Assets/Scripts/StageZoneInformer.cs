@@ -59,13 +59,6 @@ public class StageZoneInformer : MonoBehaviour
                                             cameraPoint.transform.localPosition * RecountScale());
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("My real scale: " + RecountScale());
-        }
-    }
     public CameraParams GetDefaultCamParams()
     {
         return defaultCamParams;

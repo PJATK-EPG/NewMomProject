@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(SZController))]
 public class SZInputHandler :  StateInputHandler
 {
-  
     [SerializeField] private Transform additionalCamera;
     [SerializeField] private Transform cameraArm;
     [SerializeField] private SelectionManager selectionManager;
@@ -20,7 +19,11 @@ public class SZInputHandler :  StateInputHandler
     private float orbitDampening = 5f;
     private float scrollDampening = 6f;
 
+    private Vector3 previousPosition;
+    private Vector3 currentPosition;
+
     private bool isMousePressed;
+    public bool isFirstReseting;
     public override void HandleInput()
     {
         HandleMouse();
@@ -39,16 +42,12 @@ public class SZInputHandler :  StateInputHandler
         }
         if (isMousePressed)
         {
-            if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
-            {
-                float localRotationX = localRotation.x + Input.GetAxis("Mouse X") * mouseSensitivity;
-                float localRotationY = localRotation.y + Input.GetAxis("Mouse Y") * mouseSensitivity;
-                //Debug.Log(Input.GetAxis("Mouse X") + " " + Input.GetAxis("Mouse Y"));
-                localRotation.x = MyMathfClamp.Clamp(localRotationX, szParams.xBorder);
-                localRotation.y = Mathf.Clamp(localRotationY, szParams.yBorder[0], szParams.yBorder[1]);
+            float localRotationX = localRotation.x + Input.GetAxis("Mouse X") * mouseSensitivity;
+            float localRotationY = localRotation.y + Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-            }
-            //баг про двойной клик
+            localRotation.x = MyMathfClamp.Clamp(localRotationX, szParams.xBorder);
+            localRotation.y = MyMathfClamp.Clamp(localRotationY, szParams.yBorder);
+    
             Quaternion QT = Quaternion.Euler(localRotation.y, localRotation.x, 0);
             cameraArm.rotation = Quaternion.Lerp(cameraArm.rotation, QT, Time.deltaTime * orbitDampening);
         }
@@ -68,12 +67,22 @@ public class SZInputHandler :  StateInputHandler
             additionalCamera.localPosition = new Vector3(0f, 0f, Mathf.Lerp(additionalCamera.localPosition.z, cameraDistance * -1f, Time.deltaTime * scrollDampening));
         }
     }
-
+    
     public void ResetParams()
     {
         isMousePressed = false;
-        localRotation = Vector3.zero;
+        if (isFirstReseting)
+        {
+            localRotation = new Vector3( cameraArm.eulerAngles.y,0, 0);
+            isFirstReseting = false;
+        }
+        else
+        {
+            localRotation = new Vector3(cameraArm.eulerAngles.y, cameraArm.eulerAngles.x, 0);
+        }
+        
         cameraDistance = additionalCamera.localPosition.z * -1;
+        Debug.Log("Reseted");
     }
 
     public void SetStageZoneParams(StageZoneParams szParams)
