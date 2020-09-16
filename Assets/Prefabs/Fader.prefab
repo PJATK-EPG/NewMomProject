@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 250606197643675057}
+  - component: {fileID: 5950465724232250943}
   - component: {fileID: 3953020112146423738}
   m_Layer: 0
   m_Name: Fader
@@ -33,6 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5950465724232250943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881747540266345534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cf44c6b9cc570438715ec132a8fe15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faderInformer: {fileID: 3953020112146423738}
+  button: {fileID: 1173469257180114275}
 --- !u!114 &3953020112146423738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 8440085544666554388}
   button: {fileID: 2652343500422529269}
+  mover: {fileID: 9148437189212337040}
   buttonStartPosotion: -0.5
   maxValue: 0.5
   minValue: -0.471
@@ -62,6 +78,7 @@ GameObject:
   - component: {fileID: 3008099412160151632}
   - component: {fileID: 1643761126567134022}
   - component: {fileID: 4797063208520176400}
+  - component: {fileID: 9148437189212337040}
   m_Layer: 0
   m_Name: Button
   m_TagString: Selectable
@@ -143,6 +160,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9148437189212337040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2652343500422529269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e2d1d030e86934eb12eb8d4bd8983a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedMaterial: {fileID: 2100000, guid: 252fd52d3c54b394d918e8fb782cc9bc, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 9c3852024e1ab484ea695f6b4b064b2d, type: 2}
 --- !u!1 &4758348800990961691
 GameObject:
   m_ObjectHideFlags: 0
