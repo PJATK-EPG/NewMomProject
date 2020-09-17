@@ -11,9 +11,6 @@ public class ClockMover : MonoBehaviour, ISelectable
 
     private MeshRenderer renderer;
 
-    private Vector3 maxValue;
-    private Vector3 minValue;
-
     private Vector3 screenPoint;
     private Vector3 offset;
     private bool canMove;
