@@ -113,7 +113,8 @@ public class StateSwitcher : MonoBehaviour
 
     public void RecountRelativeAnimSpeed()
     {
-        relativeAnimSpeed = Vector3.Distance(cameraArm.transform.position, armPosition)/ relativeVar;
+        //relativeAnimSpeed = Vector3.Distance(cameraArm.transform.position, armPosition)/ relativeVar;
+        relativeAnimSpeed = 1;
     }
     public void RestartAdditionalCamera()
     {
