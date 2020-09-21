@@ -7,4 +7,5 @@ public abstract class WaiterDelegate : MonoBehaviour
 {
     public abstract void OnActivated();
     public abstract void OnFinished();
+    public abstract void OnMakedUsed();
 }

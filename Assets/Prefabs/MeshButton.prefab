@@ -143,6 +143,7 @@ MonoBehaviour:
   shouldReturn: 0
   selectedMaterial: {fileID: 2100000, guid: 252fd52d3c54b394d918e8fb782cc9bc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 6a043a2676feb984bb268120daf9ac87, type: 2}
+  waiter: {fileID: 9036793341498269811}
 --- !u!114 &278500333313196690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +184,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1139111696160676468}
+  - component: {fileID: 9036793341498269811}
+  - component: {fileID: 4833417251672557774}
   m_Layer: 0
   m_Name: MeshButton
   m_TagString: Untagged
@@ -205,6 +208,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9036793341498269811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7243884049667702199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1634c2babffdc469f17debebed52b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inWaiters: []
+  waiterDelegate: {fileID: 0}
+  state: 0
+--- !u!114 &4833417251672557774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7243884049667702199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bac17f61a04b1d4bb95b48becb25c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageZone: {fileID: 0}
+  meshButton: {fileID: 7289052736426632221}
 --- !u!1 &7372374902337764901
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MeshButton : MonoBehaviour, ISelectable
@@ -8,7 +7,10 @@ public class MeshButton : MonoBehaviour, ISelectable
 
     [SerializeField] private Material selectedMaterial;
     [SerializeField] private Material defaultMaterial;
-    
+
+    [SerializeField] private SimpleWaiter waiter;
+
+    private bool isActivated;
 
     private MeshRenderer renderer;
     private Animator animator;
@@ -17,12 +19,19 @@ public class MeshButton : MonoBehaviour, ISelectable
     {
         renderer = GetComponent<MeshRenderer>();
         animator = GetComponent<Animator>();
+
+        Activate();
     }
+
+    public void Activate() => isActivated = true;
+
+    public void Disactivate() => isActivated = false;
+
 
     public void OnSelected()
     {
         renderer.material = selectedMaterial;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isActivated)
         {
             if (shouldReturn)
             {
@@ -31,6 +40,7 @@ public class MeshButton : MonoBehaviour, ISelectable
             else
             {
                 animator.SetTrigger("RegularClick");
+                waiter.Finish();
             }
            
         }
@@ -48,4 +58,5 @@ public class MeshButton : MonoBehaviour, ISelectable
 
         animator.ResetTrigger("ReturnClick");
     }
+
 }

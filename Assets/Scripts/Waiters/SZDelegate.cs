@@ -100,4 +100,9 @@ public class SZDelegate : WaiterDelegate, ISelectable
     {
         return szMemory.GetCurrentStageZone().isParentOf(stageZone);
     }
+
+    public override void OnMakedUsed()
+    {
+        throw new System.NotImplementedException();
+    }
 }

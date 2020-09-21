@@ -40,7 +40,8 @@ public class StageZone : MonoBehaviour
     public void Enable()
     {
         collider.enabled = true;
-        meshRenderer.enabled = true;
+        if(Options.Instance.shouldRenderStageZones)
+            meshRenderer.enabled = true;
         foreach(StageZone child in children)
         {
             child.Disactivate();
@@ -61,7 +62,8 @@ public class StageZone : MonoBehaviour
     public void Activate()
     {
         collider.enabled = true;
-        meshRenderer.enabled = true;
+        if (Options.Instance.shouldRenderStageZones)
+            meshRenderer.enabled = true;
     }
 
     public void Disactivate()

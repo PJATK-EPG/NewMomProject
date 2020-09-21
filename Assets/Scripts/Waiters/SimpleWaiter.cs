@@ -7,7 +7,8 @@ public enum WaitersState
 {
     deactivated,
     activated,
-    finished
+    finished,
+    used
 }
 public class SimpleWaiter : MonoBehaviour
 {
@@ -58,6 +59,12 @@ public class SimpleWaiter : MonoBehaviour
     public void Finish()
     {
         state = WaitersState.finished;
+        waiterDelegate.OnFinished();
+    }
+
+    public void MakeUsed()
+    {
+        state = WaitersState.used;
         waiterDelegate.OnFinished();
     }
 }
