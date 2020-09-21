@@ -45,10 +45,10 @@ public class StageZoneInformer : MonoBehaviour
     [SerializeField] private bool freeAspect;
 
     [Range(-180, 0)]
-    [SerializeField] private float leftAngle = 0f;
+    [SerializeField] private float rightAngle = 0f;
 
     [Range(0, 180)]
-    [SerializeField] private float rightAngle = 0f;
+    [SerializeField] private float leftAngle = 0f;
 
     private void Awake()
     {
@@ -68,9 +68,14 @@ public class StageZoneInformer : MonoBehaviour
 
     public StageZoneParams GetStageZoneParams()
     {
-        StageZoneParams returnParams = new StageZoneParams(leftAngle, rightAngle, bottomAngle, topAngle, minimalDistance, maxDistance);
+        float realAngle = (transform.localEulerAngles.y > 180) ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
+        float realRightAngle = GetRealAngle(rightAngle + realAngle);
+        float realLeftAngle = GetRealAngle(leftAngle + realAngle);
+        StageZoneParams returnParams = new StageZoneParams(realRightAngle, realLeftAngle, bottomAngle, topAngle, minimalDistance, maxDistance);
         if (freeAspect)
-            returnParams= new StageZoneParams(-360, 360, bottomAngle, topAngle, minimalDistance, maxDistance);
+        {
+            returnParams = new StageZoneParams(-360, 360, bottomAngle, topAngle, minimalDistance, maxDistance);
+        }
         return returnParams;
     }
 
@@ -85,6 +90,21 @@ public class StageZoneInformer : MonoBehaviour
             return cameraArm.transform.localScale.x * stageZone.GetParent().szInformer.RecountScale();
         }
     }
+
+    public float GetRealAngle(float angle)
+    {
+        float returnAngle = angle;
+        if (angle > 180)
+        {
+            returnAngle = angle - 360;
+        }
+        else if (angle < -180)
+        {
+            returnAngle = angle + 360; 
+        }
+        return returnAngle;
+    }
+
 #if (UNITY_EDITOR)
     private void OnValidate()
     {
@@ -135,11 +155,11 @@ public class StageZoneInformer : MonoBehaviour
         Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, bottomAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
         Handles.DrawWireArc(cameraArm.transform.position, Vector3.right, vect, bottomAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
 
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * leftAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * leftAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, rightAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, rightAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
 
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * rightAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
-        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, (-1) * rightAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, leftAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x);
+        Handles.DrawWireArc(cameraArm.transform.position, Vector3.up, vect, leftAngle, (-1) * cameraPoint.transform.localPosition.z * cameraArm.transform.localScale.x + 0.01f);
     }
 #endif
 }

@@ -161,9 +161,9 @@ MonoBehaviour:
   maxDistance: 1.27
   topAngle: 90
   bottomAngle: 0
-  freeAspect: 1
-  leftAngle: -180
-  rightAngle: 180
+  freeAspect: 0
+  rightAngle: -63
+  leftAngle: 103
 --- !u!1 &8234365538087428160
 GameObject:
   m_ObjectHideFlags: 0

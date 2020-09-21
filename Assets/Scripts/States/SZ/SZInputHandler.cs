@@ -45,9 +45,24 @@ public class SZInputHandler :  StateInputHandler
             float localRotationX = localRotation.x + Input.GetAxis("Mouse X") * mouseSensitivity;
             float localRotationY = localRotation.y + Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-            localRotation.x = MyMathfClamp.Clamp(localRotationX, szParams.xBorder);
-            localRotation.y = MyMathfClamp.Clamp(localRotationY, szParams.yBorder);
-    
+            localRotationX = RecountFloat(localRotationX);
+            localRotationY = (localRotationY > 180) ? localRotationY - 360 : localRotationY;
+
+            //тут корень зла
+
+            if(szParams.xBorder[1]> szParams.xBorder[0])
+            {
+                localRotation.x = Mathf.Clamp(localRotationX, szParams.xBorder[0], szParams.xBorder[1]);
+            }
+            else
+            {
+                localRotation.x = MyClamp(localRotationX, szParams.xBorder[1], szParams.xBorder[0]);
+            }
+            
+            localRotation.y = Mathf.Clamp(localRotationY, szParams.yBorder[0], szParams.yBorder[1]);
+            //localRotation.x = MyMathfClamp.Clamp(localRotationX, szParams.xBorder);
+            //localRotation.y = MyMathfClamp.Clamp(localRotationY, szParams.yBorder);
+
             Quaternion QT = Quaternion.Euler(localRotation.y, localRotation.x, 0);
             cameraArm.rotation = Quaternion.Lerp(cameraArm.rotation, QT, Time.deltaTime * orbitDampening);
         }
@@ -92,5 +107,47 @@ public class SZInputHandler :  StateInputHandler
     public CameraParams GetCameraParams()
     {
         return new CameraParams(cameraArm.position, cameraArm.eulerAngles, additionalCamera.localPosition);
+    }
+
+    public float RecountFloat(float value)
+    {
+        float returnValue = 0;
+        if (value > 0)
+        {
+            returnValue = (value > 180) ? value - 360 : value;
+        }
+        else
+        {
+            returnValue = (value < -180) ? value + 360 : value;
+        }
+        return returnValue;
+    }
+
+    public float MyClamp(float value, float minBorder, float maxBorder)
+    {
+        float returnValue = 0;
+        if (value > 0)
+        {
+            if (value < maxBorder)
+            {
+                returnValue = maxBorder;
+            }
+            else
+            {
+                returnValue = value;
+            }
+        }
+        else
+        {
+            if (value > minBorder)
+            {
+                returnValue = minBorder;
+            }
+            else
+            {
+                returnValue = value;
+            }
+        }
+        return returnValue;
     }
 }
