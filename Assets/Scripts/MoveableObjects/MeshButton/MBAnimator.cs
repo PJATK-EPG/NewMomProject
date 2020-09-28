@@ -17,7 +17,7 @@ public class MBAnimator : MonoBehaviour
     {
         if (canMoveBack)
         {
-            if(Vector3.Distance(meshBody.localPosition, endPoint.localPosition) > 0.1f)
+            if(Vector3.Distance(meshBody.localPosition, endPoint.localPosition) > 0.01f)
             {
                 Debug.Log("22" + Vector3.MoveTowards(meshBody.localPosition, endPoint.localPosition, animationTime * Time.deltaTime));
 
