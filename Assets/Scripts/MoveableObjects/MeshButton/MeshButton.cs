@@ -13,11 +13,13 @@ public class MeshButton : MonoBehaviour, ISelectable
     private bool isActivated;
 
     private MeshRenderer renderer;
+    private MBAnimator mbAnimator;
     private Animator animator;
 
     private void Start()
     {
         renderer = GetComponent<MeshRenderer>();
+        mbAnimator = GetComponent<MBAnimator>();
         animator = GetComponent<Animator>();
 
         Activate();
@@ -33,13 +35,15 @@ public class MeshButton : MonoBehaviour, ISelectable
         renderer.material = selectedMaterial;
         if (Input.GetMouseButtonDown(0) && isActivated)
         {
+            
             if (shouldReturn)
             {
-                StartCoroutine(AnimateReturnClick(0.75f));
+                //StartCoroutine(AnimateReturnClick(0.75f));
             }
             else
             {
-                animator.SetTrigger("RegularClick");
+                mbAnimator.MoveBack();
+                //animator.SetTrigger("RegularClick");
                 waiter.Finish();
             }
            
