@@ -38,7 +38,7 @@ public class MeshButton : MonoBehaviour, ISelectable
             
             if (shouldReturn)
             {
-                //StartCoroutine(AnimateReturnClick(0.75f));
+                mbAnimator.MoveWithReturn();
             }
             else
             {

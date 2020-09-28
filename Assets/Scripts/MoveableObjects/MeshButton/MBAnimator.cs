@@ -11,22 +11,64 @@ public class MBAnimator : MonoBehaviour
 
     private bool canMoveBack;
 
+    private bool canMoveWithReturn;
+    private bool isFirstStepMade;
+
     public void MoveBack() => canMoveBack = true;
+    public void MoveWithReturn()
+    {
+        canMoveWithReturn = true;
+        isFirstStepMade = true;
+    }
 
     void Update()
     {
         if (canMoveBack)
         {
-            if(Vector3.Distance(meshBody.localPosition, endPoint.localPosition) > 0.01f)
-            {
-                Debug.Log("22" + Vector3.MoveTowards(meshBody.localPosition, endPoint.localPosition, animationTime * Time.deltaTime));
+            MakeMoveBack();
+        }
+        else if (canMoveWithReturn)
+        {
+            MakeMoveWithBack();
+        }
+    }
 
+    private void MakeMoveBack()
+    {
+        if (Vector3.Distance(meshBody.localPosition, endPoint.localPosition) > 0.001f)
+        {
+            meshBody.localPosition = Vector3.MoveTowards(meshBody.localPosition, endPoint.localPosition, animationTime * Time.deltaTime);
+        }
+        else
+        {
+            canMoveBack = false;
+        }
+    }
+
+    private void MakeMoveWithBack()
+    {
+        if (isFirstStepMade)
+        {
+            if (Vector3.Distance(meshBody.localPosition, endPoint.localPosition) > 0.001f)
+            {
                 meshBody.localPosition = Vector3.MoveTowards(meshBody.localPosition, endPoint.localPosition, animationTime * Time.deltaTime);
             }
             else
             {
-                canMoveBack = false;
+                isFirstStepMade = false;
             }
         }
+        else
+        {
+            if (Vector3.Distance(meshBody.localPosition, Vector3.zero) > 0.001f)
+            {
+                meshBody.localPosition = Vector3.MoveTowards(meshBody.localPosition, Vector3.zero, animationTime * Time.deltaTime);
+            }
+            else
+            {
+                canMoveWithReturn = false;
+            }
+        }
+        
     }
 }
