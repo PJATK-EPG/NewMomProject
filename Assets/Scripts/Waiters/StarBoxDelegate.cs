@@ -20,7 +20,7 @@ public class StarBoxDelegate : WaiterDelegate
     }
     public override void OnActivated()
     {
-        myAnimator.MakeAnimation(openAnimation);
+        myAnimator.ProcessAnimation(openAnimation);
     }
 
     public override void OnFinished()

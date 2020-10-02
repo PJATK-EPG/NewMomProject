@@ -1368,6 +1368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d761aee0df898734d9841fc58c0beec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playableDirector: {fileID: 0}
+  blackScreen: {fileID: 4771564923541045656}
   ShowBlackAnim: {fileID: 3068090065504475689}
   FadeInAnim: {fileID: 2386601600035543060}
 --- !u!114 &3068090065504475689

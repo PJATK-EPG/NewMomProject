@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public enum MyAnimationType
 {
     PositionAnim,
-    ScaleAnim,
-    ColorAnim
+    ColorAnim,
 }
 
-public class MyAnimation : MonoBehaviour
+public class MyAnimation : SequenceChain
 {
     [SerializeField] public MyAnimationType animationType;
 
@@ -21,4 +21,6 @@ public class MyAnimation : MonoBehaviour
 
     [SerializeField] public float speedOfAnimation;
     [SerializeField] public float accuracy;
+
+    
 }

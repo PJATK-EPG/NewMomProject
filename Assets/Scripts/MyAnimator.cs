@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MyAnimator : MonoBehaviour
+public class MyAnimator : SequenceChain
 {
     public static MyAnimator Instance { get; private set; }
 
@@ -19,18 +19,41 @@ public class MyAnimator : MonoBehaviour
 
     private bool canAnimate;
 
+    private Queue<SequenceChain> animationQueue;
+
     private void Awake()
     {
         Instance = this;
     }
+    public void ProcessSequence(SequenceChain[] sequence)
+    {
+        animationQueue = new Queue<SequenceChain>(sequence);
+        ProcessSequenceChain();
+        //ProcessAnimation(animationQueue.Dequeue());
+    }
 
-    public void MakeAnimation(MyAnimation animation)
+    public void ProcessSequenceChain()
+    {
+        if (animationQueue.Count > 0)
+        {
+            SequenceChain chain = animationQueue.Dequeue();
+            MyAnimation myAnimation = (MyAnimation)chain;
+            ////////////////////
+        }
+    }
+    public void ProcessAnimation(MyAnimation animation)
     {
         animationType = animation.animationType;
-        body = animation.body;
-        image = animation.image;
-        //finishPoint = animation.finishPoint.position;
-        finishColor = animation.finishColor;
+        if(animationType == MyAnimationType.PositionAnim)
+        {
+            body = animation.body;
+            finishPoint = animation.finishPoint.position;
+        }
+        else if(animationType == MyAnimationType.ColorAnim)
+        {
+            image = animation.image;
+            finishColor = animation.finishColor;
+        }
         speedOfAnimation = animation.speedOfAnimation;
         accuracy = animation.accuracy;
         canAnimate = true;
@@ -86,6 +109,8 @@ public class MyAnimator : MonoBehaviour
             else
             {
                 canAnimate = false;
+                if (animationQueue.Count > 0) { }
+                    //ProcessAnimation(animationQueue.Dequeue());
             }
         }
     }

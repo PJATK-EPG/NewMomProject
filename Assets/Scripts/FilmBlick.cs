@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class FilmBlick : MonoBehaviour
 {
     public static FilmBlick Instance { get; private set; }
+
+    public PlayableDirector playableDirector;
+    public GameObject blackScreen;
 
     [SerializeField] private MyAnimation ShowBlackAnim;
     [SerializeField] private MyAnimation FadeInAnim;
@@ -22,14 +26,17 @@ public class FilmBlick : MonoBehaviour
 
     public void MakeBlick()
     {
-        myAnimator.MakeAnimation(ShowBlackAnim);
+        //MyAnimation[] sequence = { ShowBlackAnim, FadeInAnim };
+        //myAnimator.ProcessSequence(sequence);
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            MakeBlick();
+            //MakeBlick();
+            playableDirector.Play();
+            blackScreen.SetActive(false);
         }
     }
 }
