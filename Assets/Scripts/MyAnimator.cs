@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MyAnimator : SequenceChain
+public class MyAnimator : MonoBehaviour
 {
     public static MyAnimator Instance { get; private set; }
 
@@ -19,28 +19,11 @@ public class MyAnimator : SequenceChain
 
     private bool canAnimate;
 
-    private Queue<SequenceChain> animationQueue;
-
     private void Awake()
     {
         Instance = this;
     }
-    public void ProcessSequence(SequenceChain[] sequence)
-    {
-        animationQueue = new Queue<SequenceChain>(sequence);
-        ProcessSequenceChain();
-        //ProcessAnimation(animationQueue.Dequeue());
-    }
-
-    public void ProcessSequenceChain()
-    {
-        if (animationQueue.Count > 0)
-        {
-            SequenceChain chain = animationQueue.Dequeue();
-            MyAnimation myAnimation = (MyAnimation)chain;
-            ////////////////////
-        }
-    }
+    
     public void ProcessAnimation(MyAnimation animation)
     {
         animationType = animation.animationType;
@@ -109,8 +92,6 @@ public class MyAnimator : SequenceChain
             else
             {
                 canAnimate = false;
-                if (animationQueue.Count > 0) { }
-                    //ProcessAnimation(animationQueue.Dequeue());
             }
         }
     }

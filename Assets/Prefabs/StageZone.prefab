@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 996189947313980069}
   - component: {fileID: 1044023553131802441}
   - component: {fileID: 3446796639881672658}
-  - component: {fileID: 3830993893654538498}
-  - component: {fileID: 8432380870037535619}
   - component: {fileID: 125311764737735297}
   - component: {fileID: 7663965455684898365}
   m_Layer: 0
@@ -98,36 +96,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3830993893654538498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3101915026904233692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1634c2babffdc469f17debebed52b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inWaiters: []
-  waiterDelegate: {fileID: 0}
-  state: 0
---- !u!114 &8432380870037535619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3101915026904233692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d13712bd2dc4aa48ba61e4953aa8870, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 2100000, guid: 9ddd58aa17d249f45adc927103555233, type: 2}
-  selectedMaterial: {fileID: 2100000, guid: ed7796346e29ef7458defd4670ababb4, type: 2}
-  redMaterial: {fileID: 2100000, guid: 9c3852024e1ab484ea695f6b4b064b2d, type: 2}
 --- !u!114 &125311764737735297
 MonoBehaviour:
   m_ObjectHideFlags: 0

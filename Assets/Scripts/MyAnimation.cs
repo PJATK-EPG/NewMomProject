@@ -9,7 +9,7 @@ public enum MyAnimationType
     ColorAnim,
 }
 
-public class MyAnimation : SequenceChain
+public class MyAnimation : MonoBehaviour
 {
     [SerializeField] public MyAnimationType animationType;
 

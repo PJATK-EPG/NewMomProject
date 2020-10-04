@@ -81,14 +81,14 @@ public class StageZoneInformer : MonoBehaviour
 
     public float RecountScale()
     {
-        if (stageZone.GetParent() == null)
-        {
+      //  if (stageZone.GetParent() == null)
+      //  {
             return cameraArm.transform.localScale.x;
-        }
-        else
-        {
-            return cameraArm.transform.localScale.x * stageZone.GetParent().szInformer.RecountScale();
-        }
+        //}
+       // else
+      //  {
+     //       return cameraArm.transform.localScale.x * stageZone.GetParent().szInformer.RecountScale();
+      //  }
     }
 
     public float GetRealAngle(float angle)
