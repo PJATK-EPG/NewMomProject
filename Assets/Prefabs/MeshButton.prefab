@@ -203,6 +203,7 @@ MonoBehaviour:
   meshBody: {fileID: 7641098566811353536}
   endPoint: {fileID: 1239174193029708535}
   animationTime: 2
+  waiter: {fileID: 9036793341498269811}
 --- !u!95 &5493808803085977654
 Animator:
   serializedVersion: 3

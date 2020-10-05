@@ -102,9 +102,13 @@ public class StateSwitcher : MonoBehaviour
 
             fpsState.Unlock();
         }
-        else 
+        else if(animType == SwitchAnimType.FP_TO_SZ)
         {
             szState.PrepareForFirstReseting();
+            szState.Unlock();
+        }
+        else
+        {
             szState.Unlock();
         }
 

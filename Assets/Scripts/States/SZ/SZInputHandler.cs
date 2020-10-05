@@ -58,7 +58,7 @@ public class SZInputHandler :  StateInputHandler
             {
                 localRotation.x = MyClamp(localRotationX, szParams.xBorder[1], szParams.xBorder[0]);
             }
-            
+
             localRotation.y = Mathf.Clamp(localRotationY, szParams.yBorder[0], szParams.yBorder[1]);
             //localRotation.x = MyMathfClamp.Clamp(localRotationX, szParams.xBorder);
             //localRotation.y = MyMathfClamp.Clamp(localRotationY, szParams.yBorder);

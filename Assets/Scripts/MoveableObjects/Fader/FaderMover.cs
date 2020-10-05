@@ -8,7 +8,11 @@ public class FaderMover : MonoBehaviour, ISelectable
     [SerializeField] private Material defaultMaterial;
 
     [SerializeField] private Transform minPoint;
+    [SerializeField] private Transform centerPoint;
     [SerializeField] private Transform maxPoint;
+
+    [SerializeField] private float movingSpeed;
+
 
 
     private MeshRenderer renderer;
@@ -46,8 +50,8 @@ public class FaderMover : MonoBehaviour, ISelectable
 
     void MouseDown()
     {
-        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+        offset = gameObject.transform.position  - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         canMove = true;
     }
 
@@ -55,34 +59,34 @@ public class FaderMover : MonoBehaviour, ISelectable
     {
         if (Input.GetMouseButton(0) && canMove)
         {
-            //Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
-            //Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 
             //curPosition = new Vector3(minValue.x,
             //                        Mathf.Clamp(curPosition.y, minValue.y, maxValue.y),
             //                        minValue.z);
 
 
-            ////Vector3 nearestPoint = FindNearestPointOnLine(curPosition , minPoint.position, maxPoint.position);
-            //transform.position = Vector3.Lerp(transform.position, curPosition, 7*Time.deltaTime);
+            //Vector3 nearestPoint = FindNearestPointOnLine(curPosition , minPoint.position, maxPoint.position);
+            transform.position = Vector3.Lerp(transform.position, curPosition, 7 * Time.deltaTime);
 
 
 
-            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-            Vector3 cursorVector = curScreenPoint;
-            Vector3 headVector = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+            //    Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            //    Vector3 cursorVector = curScreenPoint;
+            //    Vector3 headVector = Camera.main.WorldToScreenPoint(transform.position + centerPoint.localPosition);
 
-            float velocity = cursorVector.y - headVector.y;
+            //    float velocity = cursorVector.y - headVector.y;
 
-            if (velocity > 0)
-            {
-                transform.position = Vector3.Lerp(transform.position, minPoint.position, 2 * Time.deltaTime);
-            }
-            else
-            {
-                transform.position = Vector3.Lerp(transform.position, maxPoint.position, 2 * Time.deltaTime);
-            }
+            //    if (velocity > 0)
+            //    {
+            //            transform.position = Vector3.Lerp(transform.position, minPoint.position, movingSpeed * Time.deltaTime);
+            //    }
+            //    else
+            //    {
+            //            transform.position = Vector3.Lerp(transform.position , maxPoint.position, movingSpeed * Time.deltaTime);
+            //    }
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -91,7 +95,7 @@ public class FaderMover : MonoBehaviour, ISelectable
 
     }
 
-    public Vector3 FindNearestPointOnLine(Vector3 origin, Vector3 minPoint, Vector3 maxPoint)
+        public Vector3 FindNearestPointOnLine(Vector3 origin, Vector3 minPoint, Vector3 maxPoint)
     {
         Vector3 p1 = minPoint;
         Vector3 p2 = maxPoint;

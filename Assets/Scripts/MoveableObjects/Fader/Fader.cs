@@ -13,13 +13,13 @@ public class Fader : MonoBehaviour
     }
     public void CheckState()
     {
-        if (Mathf.Abs(button.transform.position.y - faderInformer.realMaxValue) < 0.1f)
-        {
+        //if (Mathf.Abs(button.transform.position.y - faderInformer.realMaxValue) < 0.1f)
+        //{
 
-        }
-        else if (Mathf.Abs(button.transform.position.y - faderInformer.realMinValue) < 0.1f)
-        {
+        //}
+        //else if (Mathf.Abs(button.transform.position.y - faderInformer.realMinValue) < 0.1f)
+        //{
 
-        }
+        //}
     }
 }

@@ -1332,9 +1332,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5900458450525988355}
-  - component: {fileID: 7436694063696390374}
-  - component: {fileID: 3068090065504475689}
-  - component: {fileID: 2386601600035543060}
   m_Layer: 0
   m_Name: FilmBlick
   m_TagString: Untagged
@@ -1356,60 +1353,6 @@ Transform:
   m_Father: {fileID: 2589804244452930723}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7436694063696390374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7736975318786732169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d761aee0df898734d9841fc58c0beec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playableDirector: {fileID: 0}
-  blackScreen: {fileID: 4771564923541045656}
-  ShowBlackAnim: {fileID: 3068090065504475689}
-  FadeInAnim: {fileID: 2386601600035543060}
---- !u!114 &3068090065504475689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7736975318786732169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc2e546c51184b44b7e55345faa1af6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationType: 2
-  body: {fileID: 0}
-  image: {fileID: 7562761280608082415}
-  finishPoint: {fileID: 0}
-  finishColor: {r: 0, g: 0, b: 0, a: 1}
-  speedOfAnimation: 1.5
-  accuracy: 0.01
---- !u!114 &2386601600035543060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7736975318786732169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc2e546c51184b44b7e55345faa1af6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationType: 0
-  body: {fileID: 0}
-  image: {fileID: 7562761280608082415}
-  finishPoint: {fileID: 0}
-  finishColor: {r: 0, g: 0, b: 0, a: 0}
-  speedOfAnimation: 1.5
-  accuracy: 0.01
 --- !u!1 &8877788127782036983
 GameObject:
   m_ObjectHideFlags: 0

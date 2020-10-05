@@ -18,7 +18,7 @@ public class StageZoneParams
 }
 
 [RequireComponent(typeof(StageZone))]
-public class StageZoneInformer : MonoBehaviour
+public class SZInformer : MonoBehaviour
 {
     private StageZone stageZone;
 

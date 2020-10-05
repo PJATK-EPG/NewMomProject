@@ -1,26 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Playables;
 
 public class StarBoxDelegate : WaiterDelegate
 {
-    private MyAnimator myAnimator;
-    private MyAnimation openAnimation;
-    private void Start()
-    {
-        myAnimator = MyAnimator.Instance;
-        openAnimation = GetComponent<MyAnimation>();
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //myAnimator.MakeAnimation(openAnimation);
-        }
-    }
+    [SerializeField] private PlayableDirector playableDirector;
+    
     public override void OnActivated()
     {
-        myAnimator.ProcessAnimation(openAnimation);
+        playableDirector.Play();
     }
 
     public override void OnFinished()

@@ -9,13 +9,13 @@ public class StageZone : MonoBehaviour
     [SerializeField] private StageZone parent;
     [SerializeField] private List<StageZone> children;
 
-    [HideInInspector] public StageZoneInformer szInformer { get; private set; }
+    [HideInInspector] public SZInformer szInformer { get; private set; }
 
     private SphereCollider collider;
     private MeshRenderer meshRenderer;
     private void Awake()
     {
-        szInformer = GetComponent<StageZoneInformer>();
+        szInformer = GetComponent<SZInformer>();
         collider = GetComponent<SphereCollider>();
         meshRenderer = GetComponent<MeshRenderer>();
     }

@@ -6,11 +6,11 @@ public class MBAnimator : MonoBehaviour
 {
     [SerializeField] private Transform meshBody;
     [SerializeField] private Transform endPoint;
-
     [SerializeField] private float animationTime;
 
-    private bool canMoveBack;
+    [SerializeField] private SimpleWaiter waiter;
 
+    private bool canMoveBack;
     private bool canMoveWithReturn;
     private bool isFirstStepMade;
 
@@ -42,6 +42,7 @@ public class MBAnimator : MonoBehaviour
         else
         {
             canMoveBack = false;
+            waiter.Finish();
         }
     }
 

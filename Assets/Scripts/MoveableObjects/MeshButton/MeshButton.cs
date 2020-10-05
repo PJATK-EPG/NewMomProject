@@ -8,19 +8,15 @@ public class MeshButton : MonoBehaviour, ISelectable
     [SerializeField] private Material selectedMaterial;
     [SerializeField] private Material defaultMaterial;
 
-    [SerializeField] private SimpleWaiter waiter;
-
     private bool isActivated;
 
     private MeshRenderer renderer;
     private MBAnimator mbAnimator;
-    private Animator animator;
 
     private void Start()
     {
         renderer = GetComponent<MeshRenderer>();
         mbAnimator = GetComponent<MBAnimator>();
-        animator = GetComponent<Animator>();
 
         Activate();
     }
@@ -43,8 +39,6 @@ public class MeshButton : MonoBehaviour, ISelectable
             else
             {
                 mbAnimator.MoveBack();
-                //animator.SetTrigger("RegularClick");
-                //waiter.Finish();
             }
            
         }
@@ -53,14 +47,4 @@ public class MeshButton : MonoBehaviour, ISelectable
     {
         renderer.material = defaultMaterial;
     }
-
-    private IEnumerator AnimateReturnClick(float animationLength)
-    {
-        animator.SetTrigger("ReturnClick");
-
-       yield return new WaitForSeconds(animationLength);
-
-        animator.ResetTrigger("ReturnClick");
-    }
-
 }
