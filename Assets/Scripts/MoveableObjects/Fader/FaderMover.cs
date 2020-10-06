@@ -40,7 +40,7 @@ public class FaderMover : MonoBehaviour, ISelectable
 
     public void OnSelected()
     {
-        if(Options.Instance.shouldRenderselectedObj)
+        if(Options.Instance.shouldRenderSelectedObj)
             renderer.material = selectedMaterial;
         if (Input.GetMouseButtonDown(0))
         {

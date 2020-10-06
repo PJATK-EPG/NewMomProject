@@ -5,6 +5,8 @@ public class MeshButton : MonoBehaviour, ISelectable
 {
     [SerializeField] private bool shouldReturn;
 
+    [SerializeField] private AudioClip clickSound;
+
     [SerializeField] private Material selectedMaterial;
     [SerializeField] private Material defaultMaterial;
 
@@ -12,11 +14,13 @@ public class MeshButton : MonoBehaviour, ISelectable
 
     private MeshRenderer renderer;
     private MBAnimator mbAnimator;
+    private AudioSource audioSource;
 
     private void Start()
     {
         renderer = GetComponent<MeshRenderer>();
         mbAnimator = GetComponent<MBAnimator>();
+        audioSource = GetComponent<AudioSource>();
 
         Activate();
     }
@@ -28,16 +32,19 @@ public class MeshButton : MonoBehaviour, ISelectable
 
     public void OnSelected()
     {
-        renderer.material = selectedMaterial;
+        if(Options.Instance.shouldRenderSelectedObj)
+            renderer.material = selectedMaterial;
         if (Input.GetMouseButtonDown(0) && isActivated)
         {
             
             if (shouldReturn)
             {
+                audioSource.PlayOneShot(clickSound);
                 mbAnimator.MoveWithReturn();
             }
             else
             {
+                audioSource.PlayOneShot(clickSound);
                 mbAnimator.MoveBack();
             }
            
