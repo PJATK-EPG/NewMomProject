@@ -8,7 +8,7 @@ public class FaderMover : MonoBehaviour, ISelectable
     [SerializeField] private Material defaultMaterial;
 
     [SerializeField] private Transform minPoint;
-    [SerializeField] private Transform centerPoint;
+    [SerializeField] private Transform pivotPoint;
     [SerializeField] private Transform maxPoint;
 
     [SerializeField] private float movingSpeed;
@@ -20,6 +20,8 @@ public class FaderMover : MonoBehaviour, ISelectable
     private Vector3 maxValue;
     private Vector3 minValue;
 
+    private Vector3 wantedValue;
+
     private Vector3 screenPoint;
     private Vector3 offset;
     private bool canMove;
@@ -27,6 +29,7 @@ public class FaderMover : MonoBehaviour, ISelectable
     private void Start()
     {
         renderer = GetComponent<MeshRenderer>();
+        wantedValue = transform.position;
     }
 
     public void SetBorders(Vector3 minValue, Vector3 maxValue)
@@ -59,40 +62,50 @@ public class FaderMover : MonoBehaviour, ISelectable
     {
         if (Input.GetMouseButton(0) && canMove)
         {
-            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
-            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+            Vector2 cursourPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
 
-            //curPosition = new Vector3(minValue.x,
-            //                        Mathf.Clamp(curPosition.y, minValue.y, maxValue.y),
-            //                        minValue.z);
+            Vector3 cP = Camera.main.WorldToScreenPoint(new Vector3((minPoint.position.x + maxPoint.position.x) / 2,
+                                              (minPoint.position.y + maxPoint.position.y) / 2,
+                                              (minPoint.position.z + maxPoint.position.z) / 2));
+
+            Vector2 cP2 = new Vector2(cP.x, cP.y);
+            Vector3 maxVectorPoint = Camera.main.WorldToScreenPoint(maxPoint.position);
+            Vector2 mVP = new Vector2(maxVectorPoint.x, maxVectorPoint.y);
+
+            float cosValue = Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(mVP - cP2, cursourPoint - cP2));
 
 
-            //Vector3 nearestPoint = FindNearestPointOnLine(curPosition , minPoint.position, maxPoint.position);
-            transform.position = Vector3.Lerp(transform.position, curPosition, 7 * Time.deltaTime);
+            Vector3 centerPoint = new Vector3((minPoint.position.x + maxPoint.position.x) / 2,
+                                              (minPoint.position.y + maxPoint.position.y) / 2,
+                                              (minPoint.position.z + maxPoint.position.z) / 2);
 
 
+            Vector3 vectA = maxPoint.position - centerPoint;
+            Vector3 vectB = pivotPoint.position - centerPoint;
 
-            //    Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-            //    Vector3 cursorVector = curScreenPoint;
-            //    Vector3 headVector = Camera.main.WorldToScreenPoint(transform.position + centerPoint.localPosition);
+            Vector3 vectC = maxPoint.position - minPoint.position;
 
-            //    float velocity = cursorVector.y - headVector.y;
+            Vector3 finalVector = vectA * cosValue;
 
-            //    if (velocity > 0)
-            //    {
-            //            transform.position = Vector3.Lerp(transform.position, minPoint.position, movingSpeed * Time.deltaTime);
-            //    }
-            //    else
-            //    {
-            //            transform.position = Vector3.Lerp(transform.position , maxPoint.position, movingSpeed * Time.deltaTime);
-            //    }
+            Vector3 maybeVector = (finalVector + centerPoint);
+
+            //Gizmos.DrawLine(centerPoint, maxPoint.position);
+            //Gizmos.DrawLine(centerPoint, pivotPoint.position);
+            //Gizmos.color = Color.yellow;
+            //Gizmos.DrawLine(centerPoint, maybeVector);
+
+            wantedValue = maybeVector;
         }
         if (Input.GetMouseButtonUp(0))
         {
             canMove = false;
         }
-
+        if (canMove)
+        {
+            transform.position = Vector3.Lerp(transform.position, wantedValue, 2 * Time.deltaTime);
+        }
+        
     }
 
         public Vector3 FindNearestPointOnLine(Vector3 origin, Vector3 minPoint, Vector3 maxPoint)
