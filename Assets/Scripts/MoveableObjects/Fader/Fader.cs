@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FaderStates
+{
+    FaderMin,
+    FaderMax, 
+    None
+}
+
 public class Fader : MonoBehaviour
 {
-    [SerializeField] private FaderInformer faderInformer;
     [SerializeField] private Transform button;
     
     void Update()
