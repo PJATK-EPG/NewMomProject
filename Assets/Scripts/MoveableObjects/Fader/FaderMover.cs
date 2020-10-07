@@ -11,30 +11,19 @@ public class FaderMover : MonoBehaviour, ISelectable
     [SerializeField] private Transform pivotPoint;
     [SerializeField] private Transform maxPoint;
 
-    [SerializeField] private float movingSpeed;
-
-
-
-    private MeshRenderer renderer;
-
-    private Vector3 maxValue;
-    private Vector3 minValue;
+    [SerializeField] private float movingSpeed = 2;
 
     private Vector3 wantedValue;
-
-    private Vector3 screenPoint;
     private bool canMove;
+
+    private MeshRenderer renderer;
+    private Activator activator;
 
     private void Start()
     {
         renderer = GetComponent<MeshRenderer>();
+        activator = GetComponent<Activator>();
         wantedValue = transform.position;
-    }
-
-    public void SetBorders(Vector3 minValue, Vector3 maxValue)
-    {
-        this.maxValue = maxValue;
-        this.minValue = minValue;
     }
 
     public void OnSelected()
@@ -68,29 +57,21 @@ public class FaderMover : MonoBehaviour, ISelectable
             float cosValue = Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(maxVectorPoint - centerScreenPoint, 
                                                                     cursourPoint - centerScreenPoint));
 
+            Vector3 maxPointVector = maxPoint.position - centerPoint;
+            Vector3 finalVector = (maxPointVector * cosValue) + centerPoint;
 
-            Vector3 centerPoint = new Vector3((minPoint.position.x + maxPoint.position.x) / 2,
-                                              (minPoint.position.y + maxPoint.position.y) / 2,
-                                              (minPoint.position.z + maxPoint.position.z) / 2);
-
-
-            Vector3 vectA = maxPoint.position - centerPoint;
-
-
-            Vector3 finalVector = vectA * cosValue;
-
-            Vector3 maybeVector = (finalVector + centerPoint);
-
-            wantedValue = maybeVector;
+            wantedValue = finalVector;
         }
         if (Input.GetMouseButtonUp(0))
         {
             canMove = false;
         }
-        if (canMove)
+        if (activator.isActivated() && canMove)
         {
-            transform.position = Vector3.Lerp(transform.position, wantedValue, 2 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, wantedValue, movingSpeed * Time.deltaTime);
         }
     }
+
+
 }
 
