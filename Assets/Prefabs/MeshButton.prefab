@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 7289052736426632221}
   - component: {fileID: 278500333313196690}
   - component: {fileID: 8626069484209492998}
+  - component: {fileID: 1685419340397778905}
   - component: {fileID: 5493808803085977654}
   - component: {fileID: 6938018185585549252}
   m_Layer: 0
@@ -201,10 +202,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e241d55dc4dd11342ac6d8722b6478a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshButtonActivator: {fileID: 1685419340397778905}
   meshBody: {fileID: 7641098566811353536}
   endPoint: {fileID: 1239174193029708535}
   animationTime: 2
   waiter: {fileID: 9036793341498269811}
+--- !u!114 &1685419340397778905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681496564542414832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cc1e8a3e1c1f84ba1624bdf45cfce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &5493808803085977654
 Animator:
   serializedVersion: 3
@@ -215,7 +229,7 @@ Animator:
   m_GameObject: {fileID: 1681496564542414832}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3af32907e058ca94ba02842700d085d3, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -381,8 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bac17f61a04b1d4bb95b48becb25c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageZone: {fileID: 0}
-  meshButton: {fileID: 7289052736426632221}
+  meshButtonActivator: {fileID: 1685419340397778905}
 --- !u!1 &7372374902337764901
 GameObject:
   m_ObjectHideFlags: 0

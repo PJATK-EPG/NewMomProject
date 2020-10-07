@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MBAnimator : MonoBehaviour
 {
+    [SerializeField] private Activator meshButtonActivator;
     [SerializeField] private Transform meshBody;
     [SerializeField] private Transform endPoint;
     [SerializeField] private float animationTime;
@@ -14,11 +15,21 @@ public class MBAnimator : MonoBehaviour
     private bool canMoveWithReturn;
     private bool isFirstStepMade;
 
-    public void MoveBack() => canMoveBack = true;
+
+    public void MoveBack()
+    {
+        if (meshButtonActivator.isActivated())
+        {
+            canMoveBack = true;
+        }
+    }
     public void MoveWithReturn()
     {
-        canMoveWithReturn = true;
-        isFirstStepMade = true;
+        if (meshButtonActivator.isActivated())
+        {
+            canMoveWithReturn = true;
+            isFirstStepMade = true;
+        }
     }
 
     void Update()

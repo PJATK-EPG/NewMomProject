@@ -11,7 +11,9 @@ public enum FaderStates
 
 public class Fader : MonoBehaviour
 {
-    [SerializeField] private Transform button;
+    [SerializeField] private Transform moveableObject;
+    [SerializeField] private Transform minPoint;
+    [SerializeField] private Transform maxPoint;
     
     void Update()
     {
@@ -19,13 +21,13 @@ public class Fader : MonoBehaviour
     }
     public void CheckState()
     {
-        //if (Mathf.Abs(button.transform.position.y - faderInformer.realMaxValue) < 0.1f)
-        //{
-
-        //}
-        //else if (Mathf.Abs(button.transform.position.y - faderInformer.realMinValue) < 0.1f)
-        //{
-
-        //}
+        if (Vector3.Distance(moveableObject.transform.position , minPoint.transform.position) < 0.1f)
+        {
+            Debug.Log("MIN POINT!");
+        }
+        else if (Vector3.Distance(moveableObject.transform.position , maxPoint.transform.position) < 0.1f)
+        {
+            Debug.Log("MAX POINT!");
+        }
     }
 }

@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFP_isFirst: 1
   shouldRenderStageZones: 1
-  shouldRenderselectedObj: 0
+  shouldRenderSelectedObj: 0
   shouldUseDefPoints: 0
 --- !u!1 &3518976069975408419
 GameObject:

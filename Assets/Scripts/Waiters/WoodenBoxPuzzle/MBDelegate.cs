@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class MBDelegate : WaiterDelegate
 {
-    [SerializeField] private StageZone stageZone;
-    [SerializeField] private MeshButton meshButton;
-    public override void OnActivated(){}
+    [SerializeField] private Activator meshButtonActivator;
+    //[SerializeField] private List<Activator> activableObjects = new List<Activator>();
+    public override void OnActivated()
+    {
+        meshButtonActivator.ActivateThisObj();
+    }
 
-    public override void OnFinished(){}
+    public override void OnFinished()
+    {
+    }
 
     public override void OnMakedUsed()
     {
-        stageZone.Disactivate();
-        meshButton.Disactivate();
+        meshButtonActivator.DisactivateThisObj();
     }
 }
