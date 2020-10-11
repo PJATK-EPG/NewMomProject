@@ -4,11 +4,15 @@ using UnityEngine.Playables;
 public class StarBoxDelegate : WaiterDelegate
 {
     [SerializeField] private PlayableDirector playableDirector;
+    [SerializeField] private AudioClip drawerClick;
 
     private Activator activator;
+    private AudioSource audioSource;
+
     private void Start()
     {
         activator = GetComponent<Activator>();
+        audioSource = GetComponent<AudioSource>();
     }
     public override void OnActivated()
     {
@@ -18,7 +22,7 @@ public class StarBoxDelegate : WaiterDelegate
 
     public override void OnFinished()
     {
-        Debug.Log("Finished!!!");
+        audioSource.PlayOneShot(drawerClick);
     }
 
     public override void OnMakedUsed()
