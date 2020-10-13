@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PianoDelegate : WaiterDelegate
 {
-    public List<Activator> pianoKeys = new List<Activator>();
+    [SerializeField] private List<Activator> pianoKeys = new List<Activator>();
+    [SerializeField] private PlayableDirector openStarBoxCutScene;
     public override void OnActivated()
     {
         foreach(Activator pianoKey in pianoKeys)
@@ -15,6 +16,7 @@ public class PianoDelegate : WaiterDelegate
 
     public override void OnFinished()
     {
+        openStarBoxCutScene.Play();
     }
 
     public override void OnMakedUsed()

@@ -19,12 +19,14 @@ public class PianoKeyListener : MonoBehaviour
     public static PianoKeyListener Instance { get; private set; }
 
     private Queue<PianoNotes> playedNotes = new Queue<PianoNotes>();
+    private SimpleWaiter simpleWaiter;
 
-    private void Awake()
+    private void Awake() => Instance = this;
+    private void Start()
     {
-        Instance = this;
+        simpleWaiter = GetComponent<SimpleWaiter>();
     }
-    
+
     public void AddNote(PianoNotes note)
     {
         playedNotes.Enqueue(note);
@@ -33,8 +35,7 @@ public class PianoKeyListener : MonoBehaviour
         {
             playedNotes.Dequeue();
         }
-
-        if(playedNotes.Count == 3)
+        if (playedNotes.Count == 3)
         {
             CheckSequence();
         }
@@ -42,10 +43,13 @@ public class PianoKeyListener : MonoBehaviour
 
     private void CheckSequence()
     {
+        
         PianoNotes[] lastPlayedNotes = playedNotes.ToArray();
-        if(lastPlayedNotes[0] == PianoNotes.MI && lastPlayedNotes[0] == PianoNotes.SOL && lastPlayedNotes[0] == PianoNotes.SI)
+        
+        if (lastPlayedNotes[0] == PianoNotes.MI && lastPlayedNotes[1] == PianoNotes.SOL && lastPlayedNotes[2] == PianoNotes.SI)
         {
             Debug.Log("Activated!!!!");
+            simpleWaiter.Finish();
         }
     }
 }

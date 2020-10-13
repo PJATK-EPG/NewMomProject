@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 1685419340397778905}
   - component: {fileID: 5493808803085977654}
   - component: {fileID: 6938018185585549252}
+  - component: {fileID: 5548173529854808936}
   m_Layer: 0
   m_Name: Button
   m_TagString: Selectable
@@ -334,6 +335,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5548173529854808936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681496564542414832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1634c2babffdc469f17debebed52b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inWaiters: []
+  waiterDelegate: {fileID: 0}
+  state: 0
 --- !u!1 &7243884049667702199
 GameObject:
   m_ObjectHideFlags: 0
