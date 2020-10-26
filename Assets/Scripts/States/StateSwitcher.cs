@@ -25,9 +25,9 @@ public class StateSwitcher : MonoBehaviour
     private Quaternion armAngleRotation;
     private Vector3 cameraPosition;
 
-    private float armStep = 2.5f;
-    private float armRotateStep = 2.5f;
-    private float cameraStep = 2.5f;
+    private float armStep = 3.5f;
+    private float armRotateStep = 3.5f;
+    private float cameraStep = 3.5f;
 
     private float animationAccuracy = 0.125f;
     private float relativeVar = 2.5f;

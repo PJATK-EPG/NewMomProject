@@ -9,6 +9,8 @@ public class SZController : PlayerState
     public GameObject centerPoint;
     public GameObject vignette;
     public GameObject backButton;
+    public GameObject diaryButton;
+    public GameObject inventoryButton;
 
     [SerializeField] private SelectionManager selectionManager;
     [SerializeField] private SZMemory szMemory;
@@ -33,6 +35,8 @@ public class SZController : PlayerState
         centerPoint.SetActive(false);
         vignette.SetActive(true);
         backButton.SetActive(true);
+        diaryButton.SetActive(true);
+        inventoryButton.SetActive(true);
 
         selectionManager.SetState(PlayerStateType.StageZone);
 

@@ -9,6 +9,7 @@ public class Options : MonoBehaviour
     public bool shouldRenderStageZones;
     public bool shouldRenderSelectedObj;
     public bool shouldUseDefPoints;
+
     //should use default point
     private void Awake()
     {

@@ -7,6 +7,8 @@ public class FPController : PlayerState
     public GameObject centerPoint;
     public GameObject vignette;
     public GameObject backButton;
+    public GameObject diaryButton;
+    public GameObject inventoryButton;
 
     [SerializeField] private SelectionManager selectionManager;
 
@@ -26,6 +28,8 @@ public class FPController : PlayerState
         centerPoint.SetActive(true);
         vignette.SetActive(false);
         backButton.SetActive(false);
+        diaryButton.SetActive(false);
+        inventoryButton.SetActive(false);
 
         selectionManager.SetState(PlayerStateType.FirstPerson);
     }
